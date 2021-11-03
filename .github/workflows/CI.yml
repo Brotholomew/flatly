@@ -9,7 +9,7 @@ on:
     branches: 
     - main
     - 'refs/heads/develop'
-    - 'component-*'
+    - 'refs/heads/component-*'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
