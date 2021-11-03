@@ -7,7 +7,6 @@ on:
   # Triggers the workflow on a pull request events for main, develop and component-* branches
   pull_request:
     branches: 
-      - main
       - develop
       - 'component-*'
 
