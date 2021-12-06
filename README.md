@@ -11,9 +11,10 @@ There are two types of work that us, developers, carry out: hotfixes and feature
 Thus, every branch shall follow strict naming conventions:
 
 - branch names shall begin with the keywords: *hotfix* or *feature*;
+- after a keyword a slash should appear
 - words shall be separated by dashes
 
-E.g.: *feature-add-component-main*
+E.g.: *feature/add-component-main*
 
 ## Commit rules
 - always create a commit with a ```-s``` option (*signed commit*, at the first time git will ask you for your credentials);
@@ -40,8 +41,8 @@ Signed-off-by: Bartosz Błachut <bartoszek.blach@gmail.com>
   - the pull request must receive approvals from at least 2 developers
   - all the CI test must pass
   - all the code review threads must be resolved
-- ```hotfix-``` and ```feature-``` branches **cannot** be merged into the main branch directly
-- ```hotfix-``` and ```feature-``` branches can be merged to the ```develop``` branch
+- ```hotfix/``` and ```feature/``` branches **cannot** be merged into the main branch directly
+- ```hotfix/``` and ```feature/``` branches can be merged to the ```develop``` branch
 - the ```develop``` branch shall be merged into the ```main``` branch (aka. ```release```) on an established CI meeting as a team effort
 
 # Continuous Integration Effort
