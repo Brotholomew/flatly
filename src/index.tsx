@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import CreateRoutes from "./routes/CreateRoutes";
+import {Provider} from "react-redux";
+import store from "store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CreateRoutes/>
+      <Provider store={store}>
+          <CreateRoutes/>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

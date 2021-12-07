@@ -20,7 +20,7 @@ server.post('/login', (req, res) => {
     if (req.body?.email !== 'john@doe.com' || req.body?.password !== 'password')
         return res.status(401).send({ success: false, msg: 'Invalid credentials' });
 
-    res.status(200).send({ success: true, data: { token:  randomStr() } });
+    res.status(200).send({ success: true, data: { token:  randomStr(), email: 'john@doe.com' } });
 })
 
 // Json-server middleware

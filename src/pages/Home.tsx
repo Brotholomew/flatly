@@ -1,7 +1,13 @@
+import useAuth from "modules/useAuth";
 
 function Home() {
+    const { logout } = useAuth();
+
     return (
-        <h3>This is home page</h3>
+        <div>
+            <h3>Home page</h3>
+            <button onClick={() => logout()}>Log out</button>
+        </div>
     );
 }
 
