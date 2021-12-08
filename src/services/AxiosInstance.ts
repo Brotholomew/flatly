@@ -25,7 +25,7 @@ AxiosInstance.interceptors.request.use(
 )
 
 AxiosInstance.interceptors.response.use(
-    ({ data: { data } }: any) => data,
+    ({ data }: any) => data,
     (error: any) => {
       //(new ErrorService()).handle(error.response?.status, error.response?.data)
       throw error

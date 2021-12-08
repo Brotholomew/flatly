@@ -15,7 +15,7 @@ const useAuth = () => {
             .then((data) => {
                 dispatch({
                     type: LOGIN_SUCCESS,
-                    payload: data
+                    payload: data.data
                 });
                 success({ title: "Logged in successfully!" });
                 navigate('/');

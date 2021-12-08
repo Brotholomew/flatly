@@ -16,7 +16,7 @@ export default abstract class ResourceService extends BasicService {
     return this.axios.get(url, ...params)
   }
 
-  public show(id: number, ...params: any[]) {
+  public show(id: string, ...params: any[]) {
     return this.axios.get(this.resource + '/' + id, ...params)
   }
 
@@ -24,11 +24,11 @@ export default abstract class ResourceService extends BasicService {
     return this.axios.post(this.resource, data, ...params)
   }
 
-  public update(id: number, data: object, ...params: any[]) {
+  public update(id: string, data: object, ...params: any[]) {
     return this.axios.put(this.resource + '/' + id, data, ...params)
   }
 
-  public destroy(id: number, ...params: any[]) {
+  public destroy(id: string, ...params: any[]) {
     return this.axios.delete(this.resource + '/' + id, ...params)
   }
 }

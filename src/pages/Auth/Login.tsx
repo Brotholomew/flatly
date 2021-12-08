@@ -1,5 +1,6 @@
-import {FormEvent, useState} from "react";
+import {useState} from "react";
 import useAuth from "modules/useAuth";
+import Button from "components/utils/Button";
 
 
 function Login() {
@@ -8,9 +9,7 @@ function Login() {
     const [isLoading, setIsLoading] = useState(false);
     const { login } = useAuth();
 
-    const handleLogin = (e: FormEvent) => {
-        e.preventDefault();
-
+    const handleLogin = () => {
         // Here should be some validation
 
         setIsLoading(true);
@@ -25,7 +24,7 @@ function Login() {
     return (
         <div>
             <h4>john@doe.com | password</h4>
-            <form onSubmit={(e) => handleLogin(e)}>
+            <form onSubmit={(e) => e.preventDefault()}>
                 <label>EMAIL</label>
                 <input
                     type="email"
@@ -40,10 +39,13 @@ function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <br/>
-                <button type="submit">Login</button>
-                {
-                    isLoading && <span>Loading...</span>
-                }
+                <Button
+                    click={() => handleLogin()}
+                    icon="sign-in-alt"
+                    loading={isLoading}
+                >
+                    Login
+                </Button>
             </form>
         </div>
     );
