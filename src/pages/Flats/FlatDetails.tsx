@@ -7,7 +7,7 @@ import Skeleton from 'react-loading-skeleton';
 
 function FlatDetails() {
     const { id } = useParams();
-    const { flatsLoading, flat, fetchFlat } = useFlats();
+    const { flat, fetchFlat } = useFlats();
     const navigate = useNavigate();
     const { error } = useNotification();
 
