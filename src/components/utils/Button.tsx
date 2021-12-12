@@ -6,7 +6,8 @@ interface ButtonProps extends WithChildren {
     click?: Function,
     type?: ButtonType,
     icon?: string,
-    loading?: boolean
+    loading?: boolean,
+    htmlType?: 'button' | 'submit' | 'reset'
 }
 
 function Button(props: ButtonProps) {
@@ -32,6 +33,7 @@ function Button(props: ButtonProps) {
         <button
             className={`default-button default-button--${props.type ?? 'info'}`}
             onClick={() => handleClick()}
+            type={props.htmlType ? props.htmlType : 'button' }
         >
             {
                 props.loading
