@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form, useField, FieldConfig } from 'formik';
+import { useField, FieldConfig } from 'formik';
 
 interface ItemInterface {
     label: string,

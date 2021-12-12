@@ -1,9 +1,9 @@
 import React from 'react';
-import { Formik, Form, useField } from 'formik';
+import { Formik, Form } from 'formik';
 import Validator from "../../val/Validator";
 import FormItem from "../utils/FormItem";
 import Button from "components/utils/Button";
-import { Flat, FlatAddress } from "../../common/types/Flat";
+import { Flat } from "../../common/types/Flat";
 
 interface FlatFormInterface {
     updateFlatCallback: (flat: Flat) => void,
