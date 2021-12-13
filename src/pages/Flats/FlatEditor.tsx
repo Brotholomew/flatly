@@ -7,6 +7,7 @@ import {useMount} from "react-use";
 import useFlats from "modules/useFlats";
 import useNotification from "../../modules/useNotification";
 import {useState} from "react";
+import FlatService from "../../services/FlatService";
 
 function FlatEditor() {
     const [loading, setLoading] = useState(false);
@@ -30,8 +31,16 @@ function FlatEditor() {
 
     const updateFlat = (flat: Flat) => {
         setLoading(true);
-        // TODO: server update fields & server add new fields
-        setLoading(false);
+        if (addMode) {
+            FlatService.store(flat)
+                .catch(() => console.error('Error while adding the flat'))
+                .finally(() => setLoading(false));
+        } else {
+            FlatService.update(flat.id, flat)
+                .catch(() => console.error('Error while updating the flat'))
+                .finally(() => setLoading(false));
+        }
+
     }
 
     return (
