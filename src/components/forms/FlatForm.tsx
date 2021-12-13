@@ -4,23 +4,27 @@ import Validator from "../../val/Validator";
 import FormItem from "../utils/FormItem";
 import Button from "components/utils/Button";
 import { Flat } from "../../common/types/Flat";
+import assert from "assert";
 
 interface FlatFormInterface {
     updateFlatCallback: (flat: Flat) => void,
-    initialState: Flat
+    initialState?: Flat
+    loading?: boolean
 }
 
 const LoginForm = (props: FlatFormInterface) => {
     const { flat } = Validator();
     const { TextInput, TextArea } = FormItem();
+    const loading = props.initialState === undefined;
 
     return (
         <Formik
+            enableReinitialize
             initialValues={{
                 name: props.initialState?.name,
                 rooms: props.initialState?.rooms,
                 area: props.initialState?.area,
-                facilities: props.initialState?.facilities.join(','),
+                facilities: props.initialState?.facilities?.join(','),
                 description: props.initialState?.description,
 
                 /* flat address validation */
@@ -32,12 +36,22 @@ const LoginForm = (props: FlatFormInterface) => {
             }}
             validationSchema={flat}
             onSubmit={(values, { setSubmitting }) => {
+                /* validation will not allow below values to be undefined */
+                assert(props.initialState?.id &&
+                    values.name &&
+                    values.facilities &&
+                    values.description &&
+                    values.streetName &&
+                    values.houseNumber &&
+                    values.postalCode &&
+                    values.city);
+
                 props.updateFlatCallback({
-                    id: props.initialState.id,
+                    id: props.initialState?.id,
                     name: values.name,
                     rooms: values.rooms,
                     area: values.area,
-                    facilities: values.facilities.split(','),
+                    facilities: values?.facilities?.split(','),
                     description: values.description,
                     images: [],
 
@@ -53,23 +67,23 @@ const LoginForm = (props: FlatFormInterface) => {
             }}
         >
             <Form>
-                <TextInput label={'Name:'} props={{name: 'name', type: 'text'}} id={'name'} />
-                <TextInput label={'Rooms'} props={{name: 'rooms', type: 'number'}} id={'rooms'} />
-                <TextInput label={'Area'} props={{name: 'area', type: 'number'}} id={'area'} />
-                <TextInput label={'Facilities'} props={{name: 'facilities', type: 'text'}} id={'facilities'} />
+                <TextInput label={'Name:'} props={{name: 'name', type: 'text'}} id={'name'} loading={loading}/>
+                <TextInput label={'Rooms'} props={{name: 'rooms', type: 'number'}} id={'rooms'} loading={loading}/>
+                <TextInput label={'Area'} props={{name: 'area', type: 'number'}} id={'area'} loading={loading}/>
+                <TextInput label={'Facilities'} props={{name: 'facilities', type: 'text'}} id={'facilities'} loading={loading}/>
 
-                <TextInput label={'Street Name'} props={{name: 'streetName', type: 'text'}} id={'streetName'} />
-                <TextInput label={'House Number'} props={{name: 'houseNumber', type: 'text'}} id={'houseNumber'} />
-                <TextInput label={'Flat Number'} props={{name: 'flatNumber', type: 'text'}} id={'flatNumber'} />
-                <TextInput label={'Postal Code'} props={{name: 'postalCode', type: 'text'}} id={'postalCode'} />
-                <TextInput label={'City'} props={{name: 'city', type: 'text'}} id={'city'} />
+                <TextInput label={'Street Name'} props={{name: 'streetName', type: 'text'}} id={'streetName'} loading={loading}/>
+                <TextInput label={'House Number'} props={{name: 'houseNumber', type: 'text'}} id={'houseNumber'} loading={loading}/>
+                <TextInput label={'Flat Number'} props={{name: 'flatNumber', type: 'text'}} id={'flatNumber'} loading={loading}/>
+                <TextInput label={'Postal Code'} props={{name: 'postalCode', type: 'text'}} id={'postalCode'} loading={loading}/>
+                <TextInput label={'City'} props={{name: 'city', type: 'text'}} id={'city'} loading={loading}/>
 
-                <TextArea label={'Description'} props={{name: 'description'}} id={'description'} />
+                <TextArea label={'Description'} props={{name: 'description'}} id={'description'} loading={loading}/>
 
                 <Button
                     htmlType={'submit'}
                     icon="save"
-                    loading={false}
+                    loading={props.loading}
                 >
                     Save
                 </Button>

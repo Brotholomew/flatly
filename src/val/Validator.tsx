@@ -16,7 +16,6 @@ const Validator = () => {
         /* flat address validation */
         streetName: Yup.string().required('Required'),
         houseNumber: Yup.string().required('Required'),
-        flatNumber: Yup.string().required('Required'),
         postalCode: Yup.string().required('Required').matches(/^\d{2}-\d{3}$/, 'Postal code must match format: xx-xxx'),
         city: Yup.string().required('Required')
     })

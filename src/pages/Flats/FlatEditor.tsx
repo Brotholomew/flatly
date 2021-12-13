@@ -1,26 +1,37 @@
-import {useLocation} from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import Button from "../../components/utils/Button";
 import {useNavigate} from "react-router-dom";
 import FlatForm from "../../components/forms/FlatForm";
-import {Flat} from "../../common/types/Flat";
-import generateID from "../../common/helpers/generateID";
+import {Flat, EmptyFlat } from "../../common/types/Flat";
+import {useMount} from "react-use";
+import useFlats from "modules/useFlats";
+import useNotification from "../../modules/useNotification";
+import {useState} from "react";
 
-interface FlatEditorParams {
-    mode: 'edit' | 'add'
-}
+function FlatEditor() {
+    const [loading, setLoading] = useState(false);
 
-function FlatEditor(props: FlatEditorParams) {
+    const { id } = useParams();
+    const { pathname } = useLocation();
+    const { flat, fetchFlat } = useFlats();
+    const { error } = useNotification();
+
     const navigate = useNavigate();
-    const { state } = useLocation();
-    let flat: any = {};
+    const addMode = !pathname.includes('edit');
 
-    if (props.mode === 'edit')
-        flat = state;
-    else
-        flat.id = generateID();
+    useMount(() => {
+        if (!addMode) {
+            fetchFlat(id as string)
+                .catch(() => {
+                    error({title: "Flat with provided id has not been found!"});
+                    navigate('/flats');
+                });
+    }});
 
     const updateFlat = (flat: Flat) => {
+        setLoading(true);
         // TODO: server update fields & server add new fields
+        setLoading(false);
     }
 
     return (
@@ -33,7 +44,7 @@ function FlatEditor(props: FlatEditorParams) {
                 Back
             </Button>
 
-            <FlatForm updateFlatCallback={updateFlat} initialState={flat}/>
+            <FlatForm updateFlatCallback={updateFlat} initialState={addMode ? EmptyFlat : flat} loading={loading}/>
         </div>
     );
 }

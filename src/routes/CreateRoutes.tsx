@@ -18,8 +18,8 @@ function CreateRoutes() {
               <Route path="" element={<Home/>}/>
               <Route path="flats" element={<FlatsList/>}/>
               <Route path="flats/:id/details" element={<FlatDetails/>}/>
-              <Route path="flats/:id/edit" element={<FlatEditor mode={'edit'}/>}/>
-              <Route path="flats/add" element={<FlatEditor mode={'add'}/>}/>
+              <Route path="flats/:id/edit" element={<FlatEditor/>}/>
+              <Route path="flats/add" element={<FlatEditor/>}/>
             </Route>
           </Route>
           <Route path="/auth" element={<AuthLayout/>}>

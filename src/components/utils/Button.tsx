@@ -33,7 +33,7 @@ function Button(props: ButtonProps) {
         <button
             className={`default-button default-button--${props.type ?? 'info'}`}
             onClick={() => handleClick()}
-            type={props.htmlType ? props.htmlType : 'button' }
+            type={props.htmlType ?? 'button' }
         >
             {
                 props.loading
