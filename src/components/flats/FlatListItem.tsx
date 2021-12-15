@@ -16,7 +16,7 @@ function FlatListItem(props: FlatListItemProps) {
     }
 
     const handleEditClick = () => {
-        navigate(`/flats/${props.flat.id}/edit`, {state: props.flat});
+        navigate(`/flats/${props.flat.id}/edit`);
     }
 
     const handleDeleteClick = () => {

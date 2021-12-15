@@ -12,7 +12,7 @@ interface FlatFormInterface {
     loading?: boolean
 }
 
-const LoginForm = (props: FlatFormInterface) => {
+const FlatForm = (props: FlatFormInterface) => {
     const { flat } = Validator();
     const { TextInput, TextArea } = FormItem();
     const loading = props.initialState === undefined;
@@ -92,4 +92,4 @@ const LoginForm = (props: FlatFormInterface) => {
     );
 }
 
-export default LoginForm;
+export default FlatForm;

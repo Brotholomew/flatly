@@ -47,7 +47,6 @@ function FlatEditor() {
         <div>
             <Button
                 icon="chevron-left"
-                loading={false}
                 click={() => navigate('/flats')}
             >
                 Back
