@@ -19,7 +19,7 @@ jobs:
           echo "changed url to main"
           
       - name: build the flatly frontend
-        run: npm build
+        run: npm run build
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
