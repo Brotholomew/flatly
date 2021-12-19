@@ -1,46 +1,64 @@
-# Getting Started with Create React App
+# Committing to our project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Every change to our project has to be designed that way: a holistic container - branch consists of smaller changes - commits.
 
-## Available Scripts
+For each and every change a new branch shall be created and then merged (**only by a pull request**) into the **develop** branch.
+After a successful merge such branch shall be deleted.
 
-In the project directory, you can run:
+## Naming conventions
 
-### `npm start`
+There are two types of work that us, developers, carry out: hotfixes and features.
+Thus, every branch shall follow strict naming conventions:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- branch names shall begin with the keywords: *hotfix* or *feature*;
+- after a keyword a slash should appear
+- words shall be separated by dashes
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+E.g.: *feature/add-component-main*
 
-### `npm test`
+## Commit rules
+- always create a commit with a ```-s``` option (*signed commit*, at the first time git will ask you for your credentials);
+- first line of the commit message should comprise a short description - like a title
+- second line should be blank
+- start a detailed description from the third line
+- separate the description from your signature with a blank line
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+E.g.:
+```angular2html
+add a new component
 
-### `npm run build`
+The purpose of this commit is to include a new 
+component - test1 - and two unit tests that 
+asses code correctness.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Signed-off-by: Bartosz Błachut <bartoszek.blach@gmail.com>
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Merge rules
+- manual branch merging is strictly forbidden
+- merging can only take place through a pull request
+- to merge a pull request three conditions must be fulfilled:
+  - the pull request must receive approvals from at least 2 developers
+  - all the CI test must pass
+  - all the code review threads must be resolved
+- ```hotfix/``` and ```feature/``` branches **cannot** be merged into the main branch directly
+- ```hotfix/``` and ```feature/``` branches can be merged to the ```develop``` branch
+- the ```develop``` branch shall be merged into the ```main``` branch (aka. ```release```) on an established CI meeting as a team effort
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Continuous Integration Effort
 
-### `npm run eject`
+Every time a Pull Request for main and develop branches a CI workflow is run by the GitHub Actions component.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+It basically means that a container with Node v. 11.x, 12.x, 14.x is created on which the branches from the Pull Request are merged - then the project is being built and tests are run (our jest unit tests).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Steps that are being run:
+- ```npm ci```
+- ```run: npm run build --if-present```
+- ```run: npm test```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+In order to merge the branches from the pull request, all the tests have to pass.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Plans for the future
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The CI will be broadened by an addition of automated GitHub pages update on every push to the ```develop``` and ```main``` branches.
+(there shall be separate directories for ```develop``` and ```main``` GH pages)

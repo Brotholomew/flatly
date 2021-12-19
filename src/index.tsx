@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import 'styles/styles.scss';
 import reportWebVitals from './reportWebVitals';
+import CreateRoutes from "./routes/CreateRoutes";
+import {Provider} from "react-redux";
+import store from "store";
+import 'react-loading-skeleton/dist/skeleton.css';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+library.add(fas);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Provider store={store}>
+          <CreateRoutes/>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
