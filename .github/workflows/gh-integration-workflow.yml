@@ -18,6 +18,11 @@ jobs:
           sed s_https://brotholomew.github.io/flatly/develop_https://brotholomew.github.io/flatly/main_ ./package.json -i
           echo "changed url to main"
           
+      - name: Use Node.js 16.x 
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+          
       - name: build the flatly frontend
         run: |
           npm ci
