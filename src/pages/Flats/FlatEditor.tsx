@@ -25,7 +25,7 @@ function FlatEditor() {
             fetchFlat(id as string)
                 .catch(() => {
                     error({title: "Flat with provided id has not been found!"});
-                    navigate('/flats');
+                    navigate(`${process.env.PUBLIC_URL}/flats`);
                 });
     }});
 
@@ -47,7 +47,7 @@ function FlatEditor() {
         <div>
             <Button
                 icon="chevron-left"
-                click={() => navigate('/flats')}
+                click={() => navigate(`${process.env.PUBLIC_URL}/flats`)}
             >
                 Back
             </Button>

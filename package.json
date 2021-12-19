@@ -1,5 +1,6 @@
 {
   "name": "flatly",
+  "homepage": "https://brotholomew.github.io/flatly/develop",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
