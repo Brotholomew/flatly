@@ -18,7 +18,7 @@ const useAuth = () => {
                     payload: data.data
                 });
                 success({ title: "Logged in successfully!" });
-                navigate('/');
+                navigate(`${process.env.PUBLIC_URL}/`);
             })
             .catch((e) => {
                 console.log(e);
@@ -35,7 +35,7 @@ const useAuth = () => {
             type: LOGOUT
         });
         success({ title: "Logged out successfully!" });
-        navigate('/auth/login');
+        navigate(`${process.env.PUBLIC_URL}/auth/login`);
     }
 
     return {

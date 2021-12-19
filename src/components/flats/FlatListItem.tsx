@@ -12,11 +12,11 @@ function FlatListItem(props: FlatListItemProps) {
     const navigate = useNavigate();
 
     const handleDetailsClick = () => {
-        navigate(`/flats/${props.flat.id}/details`);
+        navigate(`${process.env.PUBLIC_URL}/flats/${props.flat.id}/details`);
     }
 
     const handleEditClick = () => {
-        navigate(`/flats/${props.flat.id}/edit`);
+        navigate(`${process.env.PUBLIC_URL}/flats/${props.flat.id}/edit`);
     }
 
     const handleDeleteClick = () => {

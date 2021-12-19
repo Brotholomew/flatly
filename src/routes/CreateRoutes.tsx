@@ -13,7 +13,7 @@ function CreateRoutes() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<AppLayout/>}>
+          <Route path={`${process.env.PUBLIC_URL}/`} element={<AppLayout/>}>
             <Route element={<AuthGuard/>}>
               <Route path="" element={<Home/>}/>
               <Route path="flats" element={<FlatsList/>}/>
@@ -22,7 +22,7 @@ function CreateRoutes() {
               <Route path="flats/add" element={<FlatEditor/>}/>
             </Route>
           </Route>
-          <Route path="/auth" element={<AuthLayout/>}>
+          <Route path={`${process.env.PUBLIC_URL}/auth`} element={<AuthLayout/>}>
             <Route element={<OnlyGuestGuard/>}>
               <Route path="login" element={<Login/>}/>
             </Route>

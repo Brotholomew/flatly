@@ -13,7 +13,7 @@ function FlatDetails() {
 
     useMount(() => fetchFlat(id as string).catch(() => {
         error({ title: "Flat with provided id has not been found!" });
-        navigate('/flats');
+        navigate(`${process.env.PUBLIC_URL}'/flats`);
     }));
 
     return (

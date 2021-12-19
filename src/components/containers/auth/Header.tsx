@@ -5,7 +5,7 @@ function Header() {
     return (
         <>
             <h3>This is auth header</h3>
-            <Link to="/">Home</Link>
+            <Link to={`${process.env.PUBLIC_URL}/`}>Home</Link>
         </>
     );
 }

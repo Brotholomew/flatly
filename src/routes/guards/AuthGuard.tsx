@@ -8,7 +8,7 @@ function AuthGuard() {
 
     if (!isLoggedIn) {
         error({ title: 'You are not authenticated!' });
-        return <Navigate to="/auth/login" />;
+        return <Navigate to={`${process.env.PUBLIC_URL}/auth/login`} />;
     }
 
     return <Outlet/>;

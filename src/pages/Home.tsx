@@ -7,7 +7,7 @@ function Home() {
     return (
         <div>
             <h3>Home page</h3>
-            <Link to="/flats">Flats</Link>
+            <Link to={`${process.env.PUBLIC_URL}/flats`}>Flats</Link>
             <button onClick={() => logout()}>Log out</button>
         </div>
     );

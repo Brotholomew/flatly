@@ -3,7 +3,7 @@ import axios from 'axios'
 const AxiosInstance = axios.create({
   baseURL:
     process.env.NODE_ENV !== 'development'
-      ? 'http://production/api/v1/'
+      ? 'http://20.127.80.3:8080/api/v1/'
       : 'http://127.0.0.1:3001/',
   timeout: 10000,
   maxBodyLength: 5000,

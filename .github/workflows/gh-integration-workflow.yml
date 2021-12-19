@@ -1,0 +1,83 @@
+# A workflow to build the flatly app and push it to gh-pages branch
+name: github pages
+
+on:
+  push:
+    branches: [ main, develop ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: change url to /main
+        if: github.ref == 'refs/heads/main'
+        run: | 
+          sed s_https://brotholomew.github.io/flatly/develop_https://brotholomew.github.io/flatly/main_ ./package.json -i
+          echo "changed url to main"
+          
+      - name: build the flatly frontend
+        run: npm build
+        
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: frontend
+          path: '${{ github.workspace }}/build/*'
+    
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: clone repo and checkout to gh-pages branch
+      uses: actions/checkout@v2
+    - run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git clone git@github.com:Brotholomew/flatly.git
+        git checkout gh-pages
+    
+    # clean dirs
+    
+    - name: clean develop dir
+      if: github.ref == 'refs/heads/develop'
+      run: |
+        yes | rm -r ./develop
+        mkdir -p develop
+        
+    - name: clean main dir
+      if: github.ref == 'refs/heads/main'
+      run: |
+        yes | rm -r ./main
+        mkdir -p main
+        
+    # -- * --
+        
+    # download artifact    
+    
+    - name: download develop artifact
+      if: github.ref == 'refs/heads/develop'
+      uses: actions/download-artifact@v2
+      with:
+        name: frontend
+        path: develop
+
+    - name: download main artifact
+      if: github.ref == 'refs/heads/main'
+      uses: actions/download-artifact@v2
+      with:
+        name: frontend
+        path: main
+        
+    # -- * --
+
+    - name: push changes
+      uses: actions/checkout@v2
+    - run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m 'update gh-pages'
+        git push
