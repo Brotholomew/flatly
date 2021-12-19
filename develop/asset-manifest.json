@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/flatly/develop/static/css/main.3fc3c471.chunk.css",
+    "main.js": "/flatly/develop/static/js/main.cbfc97c6.chunk.js",
+    "main.js.map": "/flatly/develop/static/js/main.cbfc97c6.chunk.js.map",
+    "runtime-main.js": "/flatly/develop/static/js/runtime-main.dbce8167.js",
+    "runtime-main.js.map": "/flatly/develop/static/js/runtime-main.dbce8167.js.map",
+    "static/css/2.83b5cdb7.chunk.css": "/flatly/develop/static/css/2.83b5cdb7.chunk.css",
+    "static/js/2.50217815.chunk.js": "/flatly/develop/static/js/2.50217815.chunk.js",
+    "static/js/2.50217815.chunk.js.map": "/flatly/develop/static/js/2.50217815.chunk.js.map",
+    "static/js/3.bfe0a0c7.chunk.js": "/flatly/develop/static/js/3.bfe0a0c7.chunk.js",
+    "static/js/3.bfe0a0c7.chunk.js.map": "/flatly/develop/static/js/3.bfe0a0c7.chunk.js.map",
+    "index.html": "/flatly/develop/index.html",
+    "static/css/2.83b5cdb7.chunk.css.map": "/flatly/develop/static/css/2.83b5cdb7.chunk.css.map",
+    "static/css/main.3fc3c471.chunk.css.map": "/flatly/develop/static/css/main.3fc3c471.chunk.css.map",
+    "static/js/2.50217815.chunk.js.LICENSE.txt": "/flatly/develop/static/js/2.50217815.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dbce8167.js",
+    "static/css/2.83b5cdb7.chunk.css",
+    "static/js/2.50217815.chunk.js",
+    "static/css/main.3fc3c471.chunk.css",
+    "static/js/main.cbfc97c6.chunk.js"
+  ]
+}
