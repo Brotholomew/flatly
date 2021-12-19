@@ -45,6 +45,8 @@ jobs:
     steps:
     - name: clone repo and checkout to gh-pages branch
       uses: actions/checkout@v2
+      with:
+        repo-token: ${{ secrets.TOKEN }}
     - run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
@@ -87,6 +89,8 @@ jobs:
 
     - name: push changes
       uses: actions/checkout@v2
+      with:
+        repo-token: ${{ secrets.TOKEN }}
     - run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
