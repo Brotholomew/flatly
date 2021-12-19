@@ -56,13 +56,13 @@ jobs:
     - name: clean develop dir
       if: github.ref == 'refs/heads/develop'
       run: |
-        rm -r ./develop 2&>1 /dev/null
+        yes | rm -r -f ./develop > /dev/null 2>&1
         mkdir -p develop
         
     - name: clean main dir
       if: github.ref == 'refs/heads/main'
       run: |
-        rm -r ./main 2&>1 /dev/null
+        yes | rm -r -f ./main > /dev/null 2>&1
         mkdir -p main
         
     # -- * --
