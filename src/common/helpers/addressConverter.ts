@@ -1,7 +1,7 @@
 import {FlatAddress} from "common/types/Flat";
 
 export function firstLine(address: FlatAddress) {
-    return `${address.streetName} ${address.houseNumber} ${address.flatNumber ? '/' + address.flatNumber : ''}`;
+    return `${address.streetName} ${address.houseNumber} ${address.localNumber ? '/' + address.localNumber : ''}`;
 }
 
 export function secondLine(address: FlatAddress) {

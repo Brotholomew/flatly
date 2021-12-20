@@ -1,6 +1,5 @@
 import {LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT, User} from "store/modules/auth/types";
-
-const USER_STORAGE_KEY = 'user';
+import {USER_STORAGE_KEY} from "common/constants/userConstants";
 
 const storageUser = localStorage.getItem(USER_STORAGE_KEY);
 
@@ -19,7 +18,7 @@ function authReducers(state = initialState, action: any) {
             return {
                 ...state,
                 isLoggedIn: true,
-                user: payload,
+                user: payload.user,
             };
         case LOGIN_FAILURE:
             return {
