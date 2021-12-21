@@ -8,6 +8,9 @@ function Home() {
         <div>
             <h3>Home page</h3>
             <Link to={`${process.env.PUBLIC_URL}/flats`}>Flats</Link>
+            <br/>
+            <Link to={`${process.env.PUBLIC_URL}/bookings`}>Bookings</Link>
+            <br/>
             <button onClick={() => logout()}>Log out</button>
         </div>
     );
