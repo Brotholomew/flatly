@@ -85,14 +85,14 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: frontend
-        path: develop
+        path: .
 
     - name: download main artifact
       if: github.ref == 'refs/heads/main'
       uses: actions/download-artifact@v2
       with:
         name: frontend
-        path: main
+        path: .
         
     # -- * --
     
@@ -113,7 +113,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.HOST_USERNAME }}
         key: ${{ secrets.HOST_KEY }}
-        envs: FRONTEND_DIR
         port: 22
         source: "frontend.tar"
         target: $FRONTEND_DIR/develop
@@ -147,7 +146,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.HOST_USERNAME }}
         key: ${{ secrets.HOST_KEY }}
-        envs: FRONTEND_DIR
         port: 22
         source: "frontend.tar"
         target: $FRONTEND_DIR/main
