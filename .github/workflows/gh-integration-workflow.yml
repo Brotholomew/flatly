@@ -115,7 +115,7 @@ jobs:
         key: ${{ secrets.HOST_KEY }}
         port: 22
         source: "frontend.tar"
-        target: $FRONTEND_DIR/develop
+        target: "${{ FRONTEND_DIR }}/develop"
         
     - name: extract the archive
       if: github.ref == 'refs/heads/develop'
@@ -148,7 +148,7 @@ jobs:
         key: ${{ secrets.HOST_KEY }}
         port: 22
         source: "frontend.tar"
-        target: $FRONTEND_DIR/main
+        target: "${{ FRONTEND_DIR }}/main"
         
     - name: extract the archive
       if: github.ref == 'refs/heads/main'
