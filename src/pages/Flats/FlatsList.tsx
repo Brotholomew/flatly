@@ -3,6 +3,7 @@ import {Flat} from "common/types/Flat";
 import FlatListItem from "components/flats/FlatListItem";
 import {useMount} from "react-use";
 import Skeleton from 'react-loading-skeleton';
+import {Link} from "react-router-dom";
 
 function FlatsList() {
     const { flatsLoading, flats, fetchFlats } = useFlats();
@@ -21,6 +22,7 @@ function FlatsList() {
 
     return (
         <div>
+            <Link to={`${process.env.PUBLIC_URL}/flats/add`}>Create new flat</Link>
             {
                 flatsLoading
                 ? renderSkeleton()

@@ -1,38 +1,50 @@
-import generateID from "../helpers/generateID";
-
 export interface Flat {
-    id: string,
+    id?: number,
     name: string,
     address: FlatAddress,
     rooms?: number,
     area?: number,
-    facilities: string[],
-    images: string[],
+    numberOfGuests?: number,
+    active: boolean,
+    facilities: Facility[],
+    images: Image[],
     description: string
 }
 
 export interface FlatAddress {
+    id?: number,
     streetName: string,
     houseNumber: string,
-    flatNumber?: string,
+    localNumber?: string
     postalCode: string,
     city: string
+}
+
+export interface Facility {
+    id: number,
+    name?: string
+}
+
+export interface Image {
+    id?: number,
+    name: string
 }
 
 export const EmptyFlatAddress: FlatAddress = {
     streetName: '',
     houseNumber: '',
-    flatNumber: undefined,
+    localNumber: undefined,
     postalCode: '',
     city: ''
 }
 
 export const EmptyFlat: Flat = {
-    id: generateID(),
     name: '',
     address: EmptyFlatAddress,
     rooms: undefined,
     area: undefined,
+    numberOfGuests: undefined,
+    active: true,
     facilities: [],
     images: [],
     description: ''

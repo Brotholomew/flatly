@@ -22,7 +22,7 @@ function FlatEditor() {
 
     useMount(() => {
         if (!addMode) {
-            fetchFlat(id as string)
+            fetchFlat(parseInt(id as string))
                 .catch(() => {
                     error({title: "Flat with provided id has not been found!"});
                     navigate(`${process.env.PUBLIC_URL}/flats`);
@@ -36,11 +36,10 @@ function FlatEditor() {
                 .catch(() => console.error('Error while adding the flat'))
                 .finally(() => setLoading(false));
         } else {
-            FlatService.update(flat.id, flat)
+            FlatService.update(flat.id as number, flat)
                 .catch(() => console.error('Error while updating the flat'))
                 .finally(() => setLoading(false));
         }
-
     }
 
     return (

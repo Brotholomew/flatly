@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 import Validator from "../../val/Validator";
 import FormItem from "../utils/FormItem";
 import Button from "components/utils/Button";
-import { Flat } from "../../common/types/Flat";
+import {Facility, Flat} from "common/types/Flat";
 import assert from "assert";
 
 interface FlatFormInterface {
@@ -24,13 +24,13 @@ const FlatForm = (props: FlatFormInterface) => {
                 name: props.initialState?.name,
                 rooms: props.initialState?.rooms,
                 area: props.initialState?.area,
-                facilities: props.initialState?.facilities?.join(','),
+                facilities: props.initialState?.facilities?.map(item => (item as Facility).id).join(','),
                 description: props.initialState?.description,
 
                 /* flat address validation */
                 streetName: props.initialState?.address.streetName,
                 houseNumber: props.initialState?.address.houseNumber,
-                flatNumber: props.initialState?.address.flatNumber,
+                localNumber: props.initialState?.address.localNumber,
                 postalCode: props.initialState?.address.postalCode,
                 city: props.initialState?.address.city
             }}
@@ -51,14 +51,15 @@ const FlatForm = (props: FlatFormInterface) => {
                     name: values.name,
                     rooms: values.rooms,
                     area: values.area,
-                    facilities: values?.facilities?.split(','),
+                    facilities: values?.facilities?.split(',').map(item => ({id: parseInt(item)})),
                     description: values.description,
+                    active: false,
                     images: [],
 
                     address: {
                         streetName: values.streetName,
                         houseNumber: values.houseNumber,
-                        flatNumber: values.flatNumber,
+                        localNumber: values.localNumber,
                         postalCode: values.postalCode,
                         city: values.city
                     }
@@ -74,11 +75,13 @@ const FlatForm = (props: FlatFormInterface) => {
 
                 <TextInput label={'Street Name'} props={{name: 'streetName', type: 'text'}} id={'streetName'} loading={loading}/>
                 <TextInput label={'House Number'} props={{name: 'houseNumber', type: 'text'}} id={'houseNumber'} loading={loading}/>
-                <TextInput label={'Flat Number'} props={{name: 'flatNumber', type: 'text'}} id={'flatNumber'} loading={loading}/>
+                <TextInput label={'Local Number'} props={{name: 'localNumber', type: 'text'}} id={'localNumber'} loading={loading}/>
                 <TextInput label={'Postal Code'} props={{name: 'postalCode', type: 'text'}} id={'postalCode'} loading={loading}/>
                 <TextInput label={'City'} props={{name: 'city', type: 'text'}} id={'city'} loading={loading}/>
 
                 <TextArea label={'Description'} props={{name: 'description'}} id={'description'} loading={loading}/>
+
+                { /* TODO Add facilities, images and missing property fields */ }
 
                 <Button
                     htmlType={'submit'}

@@ -10,12 +10,12 @@ const useAuth = () => {
     const { success, error } = useNotification();
     const navigate = useNavigate();
 
-    const login = (email: string, password: string) => {
-        return AuthService.logIn({ email: email, password: password })
+    const login = (login: string, password: string) => {
+        return AuthService.logIn({ login, password })
             .then((data) => {
                 dispatch({
                     type: LOGIN_SUCCESS,
-                    payload: data.data
+                    payload: data
                 });
                 success({ title: "Logged in successfully!" });
                 navigate(`${process.env.PUBLIC_URL}/`);
