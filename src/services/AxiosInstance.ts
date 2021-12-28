@@ -7,8 +7,8 @@ const userObject = userStorage ? JSON.parse(userStorage) : null;
 const AxiosInstance = axios.create({
   baseURL:
     process.env.NODE_ENV !== 'development'
-      ? 'http://20.127.80.3:8080/api/v1/'
-      : 'http://127.0.0.1:8080/api/v1/',
+      ? 'https://backend.flatly.online/api/v1/'
+      : 'http://127.0.0.1:3001/',
   timeout: 10000,
   maxBodyLength: 5000,
   maxContentLength: 5000,
