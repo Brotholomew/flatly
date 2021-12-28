@@ -7,4 +7,14 @@
   &--error {
     background-color: red;
   }
+
+  &--pagination {
+    color: black;
+    background-color: cadetblue;
+  }
+
+  &--pagination-current {
+    color: white;
+    background-color: blue;
+  }
 }

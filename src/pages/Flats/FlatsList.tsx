@@ -8,15 +8,22 @@ import DeletePopup from "../../components/popup/deletePopup";
 import {useState} from "react";
 import FlatService from "../../services/FlatService";
 import useNotification from "../../modules/useNotification";
-
+import {useDispatch, useSelector} from "react-redux";
+import {FLATS_CURRENT_PAGE} from "../../store/modules/pagination/types";
+import Pagination from "../../components/pagination/pagination";
+import {setPagination} from "../../store/modules/pagination/actions";
 
 function FlatsList() {
     const { flatsLoading, flats, fetchFlats } = useFlats();
-    const [showPopup, setShowPopup] = useState<boolean>(false);
-    const [toBeDeleted, setToBeDeleted] = useState<Flat | null>(null);
+    const { currentPageFlats, maxPageFlats } = useSelector((state: any) => state.paginationReducers);
     const { error, success } = useNotification();
 
-    useMount(() => fetchFlats());
+    const dispatch = useDispatch();
+
+    const [showPopup, setShowPopup] = useState<boolean>(false);
+    const [toBeDeleted, setToBeDeleted] = useState<Flat | null>(null);
+
+    useMount(() => fetchFlats(currentPageFlats === 0 ? null : currentPageFlats));
 
     const renderFlatsList = () => {
         return flats.map((flat: Flat) => <FlatListItem flat={flat} key={flat.id} deleteCallback={triggerFlatDeletion}/>);
@@ -40,6 +47,10 @@ function FlatsList() {
             .finally(() => { setShowPopup(false); setToBeDeleted(null); fetchFlats(); });
     }
 
+    const changePage = (page: number) => {
+        dispatch(setPagination(FLATS_CURRENT_PAGE, {page: Math.max(1, Math.min(page, maxPageFlats))}));
+        fetchFlats(page === 0 ? null : page).finally();
+    }
 
     return (
         <div>
@@ -48,7 +59,14 @@ function FlatsList() {
             {
                 flatsLoading
                 ? renderSkeleton()
-                : renderFlatsList()
+                :
+                    <>
+                        {renderFlatsList()}
+                        <Pagination
+                            maxNumber={maxPageFlats}
+                            currentPage={currentPageFlats}
+                            changePage={changePage} />
+                    </>
             }
         </div>
     );
