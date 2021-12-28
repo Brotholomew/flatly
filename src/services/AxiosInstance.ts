@@ -8,7 +8,7 @@ const AxiosInstance = axios.create({
   baseURL:
     process.env.NODE_ENV !== 'development'
       ? 'https://backend.flatly.online/api/v1/'
-      : 'http://127.0.0.1:3001/',
+      : 'http://127.0.0.1:8080/api/v1',
   timeout: 10000,
   maxBodyLength: 5000,
   maxContentLength: 5000,

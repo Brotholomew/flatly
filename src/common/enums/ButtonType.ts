@@ -1,5 +1,7 @@
 export enum ButtonType {
     INFO = 'info',
     SUCCESS = 'success',
-    ERROR = 'error'
+    ERROR = 'error',
+    POPUP_CLOSE = 'popup-close',
+    POPUP_FN = 'popup-fn'
 }
