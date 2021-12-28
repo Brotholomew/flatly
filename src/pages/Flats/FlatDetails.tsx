@@ -11,10 +11,11 @@ function FlatDetails() {
     const navigate = useNavigate();
     const { error } = useNotification();
 
-    useMount(() => fetchFlat(id as string).catch(() => {
+    useMount(() => fetchFlat(parseInt(id as string)).catch(() => {
         error({ title: "Flat with provided id has not been found!" });
         navigate(`${process.env.PUBLIC_URL}'/flats`);
     }));
+
 
     return (
         <div>
@@ -39,7 +40,11 @@ function FlatDetails() {
                         </tr>
                         <tr>
                             <td>Facilities</td>
-                            <td>{ flat?.facilities ? flat?.facilities.join(', ') : <Skeleton width={180}/> }</td>
+                            <td>{
+                                flat?.facilities
+                                    ? flat?.facilities.map(item => item.name).join(', ')
+                                    : <Skeleton width={180}/> }
+                            </td>
                         </tr>
                         <tr>
                             <td>Address</td>

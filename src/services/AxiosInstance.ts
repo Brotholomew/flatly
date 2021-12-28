@@ -1,4 +1,8 @@
 import axios from 'axios'
+import {USER_STORAGE_KEY} from "common/constants/userConstants";
+
+const userStorage = localStorage.getItem(USER_STORAGE_KEY);
+const userObject = userStorage ? JSON.parse(userStorage) : null;
 
 const AxiosInstance = axios.create({
   baseURL:
@@ -11,6 +15,7 @@ const AxiosInstance = axios.create({
 
   headers: {
     'Content-type': 'application/json; charset=UTF-8',
+    'Authentication': userObject?.value
   },
 })
 

@@ -12,7 +12,7 @@ const useFlats = () => {
             setFlatsLoading(true);
             return FlatService.index()
                 .then((res: any) => {
-                    setFlats(res);
+                    setFlats(res.data);
                     resolve(true);
                 })
                 .catch((e: any) => reject(e))
@@ -20,7 +20,7 @@ const useFlats = () => {
         })
     }
 
-    const fetchFlat = (id: string) => {
+    const fetchFlat = (id: number) => {
         return new Promise((resolve, reject) => {
             setFlatsLoading(true);
             return FlatService.show(id)

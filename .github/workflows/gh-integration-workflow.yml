@@ -1,5 +1,8 @@
-# A workflow to build the flatly app and push it to gh-pages branch
+# A workflow to build the flatly app and send files to our vps
 name: github pages
+env:
+  LOGFILE: /home/flatly/drop_zone/www/backend/logs/flatly.log
+  FRONTEND_DIR: /home/flatly/drop_zone/www
 
 on:
   push:
@@ -18,15 +21,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
-          
-      - name: change url to /main
-        if: github.ref == 'refs/heads/main'
-        run: | 
-          sed s_https://brotholomew.github.io/flatly/develop_https://brotholomew.github.io/flatly/main_ ./package.json -i
-          echo "changed url to main"
-          
-      - name: sanity check
-        run: ls -la
         
       - name: build the flatly frontend
         run: | 
@@ -43,28 +37,45 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: clone repo and checkout to gh-pages branch
-      uses: actions/checkout@v2
-      with:
-        ref: gh-pages
-        
-    - name: sanity check
-      run: ls -la
     
     # clean dirs
     
-    - name: clean develop dir
-      if: github.ref == 'refs/heads/develop'
-      run: |
-        yes | rm -r -f ./develop > /dev/null 2>&1
-        mkdir -p develop
-        
-    - name: clean main dir
+    - name: clean the develop dir
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        if: github.ref == 'refs/heads/develop'
+        username: ${{ secrets.HOST_USERNAME }}
+        key: ${{ secrets.HOST_KEY }}
+        envs: LOGFILE,FRONTEND_DIR
+        port: 22
+        script: |
+          sudo echo "[CI] cleaning the develop dir"
+          sudo echo "[CI] cleaning the develop dir" >> $LOGFILE
+          cd $FRONTEND_DIR
+          yes | rm -r -f ./develop > /dev/null 2>&1
+          mkdir -p develop
+          sudo echo "[CI] cleaned the develop dir"
+          sudo echo "[CI] cleaned the develop dir" >> $LOGFILE
+          
+    - name: clean the main dir
       if: github.ref == 'refs/heads/main'
-      run: |
-        yes | rm -r -f ./main > /dev/null 2>&1
-        mkdir -p main
-        
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.HOST_USERNAME }}
+        key: ${{ secrets.HOST_KEY }}
+        envs: LOGFILE,FRONTEND_DIR
+        port: 22
+        script: |
+          sudo echo "[CI] cleaning the main dir"
+          sudo echo "[CI] cleaning the main dir" >> $LOGFILE
+          cd $FRONTEND_DIR
+          yes | rm -r -f ./main > /dev/null 2>&1
+          mkdir -p main
+          sudo echo "[CI] cleaned the main dir"
+          sudo echo "[CI] cleaned the main dir" >> $LOGFILE
+     
     # -- * --
         
     # download artifact    
@@ -74,21 +85,87 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: frontend
-        path: develop
+        path: .
 
     - name: download main artifact
       if: github.ref == 'refs/heads/main'
       uses: actions/download-artifact@v2
       with:
         name: frontend
-        path: main
+        path: .
         
     # -- * --
-
-    - name: push changes
+    
+    # sanity check
+    - name: sanity check
+      run: ls -la
+    
+    - name: create archive
       run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add .
-        git commit -m 'update gh-pages'
-        git push
+        tar -czvf frontend.tar *
+    
+    # copy and extract files to develop
+    
+    - name: copy files
+      if: github.ref == 'refs/heads/develop'
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.HOST_USERNAME }}
+        key: ${{ secrets.HOST_KEY }}
+        port: 22
+        source: "frontend.tar"
+        target: "${{ env.FRONTEND_DIR }}/develop"
+        
+    - name: extract the archive
+      if: github.ref == 'refs/heads/develop'
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.HOST_USERNAME }}
+        key: ${{ secrets.HOST_KEY }}
+        envs: LOGFILE,FRONTEND_DIR
+        port: 22
+        script: |
+          sudo echo "[CI] extracting artifact"
+          sudo echo "[CI] extracting artifact" >> $LOGFILE
+          cd $FRONTEND_DIR/develop
+          tar -xvf frontend.tar
+          rm frontend.tar
+          sudo echo "[CI] extracted artifact"
+          sudo echo "[CI] extracted artifact" >> $LOGFILE 
+    
+    # -- * --
+
+    # copy and extract files to main
+    
+    - name: copy files
+      if: github.ref == 'refs/heads/main'
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.HOST_USERNAME }}
+        key: ${{ secrets.HOST_KEY }}
+        port: 22
+        source: "frontend.tar"
+        target: "${{ env.FRONTEND_DIR }}/main"
+        
+    - name: extract the archive
+      if: github.ref == 'refs/heads/main'
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.HOST_USERNAME }}
+        key: ${{ secrets.HOST_KEY }}
+        envs: LOGFILE,FRONTEND_DIR
+        port: 22
+        script: |
+          sudo echo "[CI] extracting artifact"
+          sudo echo "[CI] extracting artifact" >> $LOGFILE
+          cd $FRONTEND_DIR/main
+          tar -xvf frontend.tar
+          rm frontend.tar
+          sudo echo "[CI] extracted artifact"
+          sudo echo "[CI] extracted artifact" >> $LOGFILE 
+    
+    # -- * --
