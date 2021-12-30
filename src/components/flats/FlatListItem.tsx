@@ -5,7 +5,8 @@ import Button from "components/utils/Button";
 import {ButtonType} from "common/enums/ButtonType";
 
 interface FlatListItemProps {
-    flat: Flat
+    flat: Flat,
+    deleteCallback: (flat: Flat) => void
 }
 
 function FlatListItem(props: FlatListItemProps) {
@@ -19,9 +20,7 @@ function FlatListItem(props: FlatListItemProps) {
         navigate(`${process.env.PUBLIC_URL}/flats/${props.flat.id}/edit`);
     }
 
-    const handleDeleteClick = () => {
-
-    }
+    const handleDeleteClick = props.deleteCallback;
 
     return (
         <div className="list-item">
@@ -46,7 +45,7 @@ function FlatListItem(props: FlatListItemProps) {
                     Edit
                 </Button>
                 <Button
-                    click={() => handleDeleteClick()}
+                    click={() => handleDeleteClick(props.flat)}
                     type={ButtonType.ERROR}
                     icon="trash"
                 >
