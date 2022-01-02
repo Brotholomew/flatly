@@ -14,12 +14,8 @@ function BookingListItem(props: BookingListItemProps) {
         navigate(`${process.env.PUBLIC_URL}/bookings/${props.booking.id}/details`);
     }
 
-    const handleEditClick = () => {
-        navigate(`${process.env.PUBLIC_URL}/bookings/${props.booking.id}/edit`);
-    }
-
-    const handleDeleteClick = () => {
-
+    const handleCancelClick = () => {
+        
     }
 
     return (
@@ -38,18 +34,11 @@ function BookingListItem(props: BookingListItemProps) {
                     Details
                 </Button>
                 <Button
-                    click={() => handleEditClick()}
-                    type={ButtonType.INFO}
-                    icon="pen"
-                >
-                    Edit
-                </Button>
-                <Button
-                    click={() => handleDeleteClick()}
+                    click={() => handleCancelClick()}
                     type={ButtonType.ERROR}
                     icon="trash"
                 >
-                    Delete
+                    Cancel
                 </Button>
             </div>
         </div>
