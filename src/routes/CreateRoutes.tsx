@@ -9,6 +9,7 @@ import FlatsList from "pages/Flats/FlatsList";
 import FlatDetails from "pages/Flats/FlatDetails";
 import FlatEditor from "pages/Flats/FlatEditor";
 import BookingsList from "pages/Bookings/BookingsList";
+import BookingDetails from "../pages/Bookings/BookingDetails";
 
 function CreateRoutes() {
     return (
@@ -22,6 +23,7 @@ function CreateRoutes() {
               <Route path="flats/:id/edit" element={<FlatEditor/>}/>
               <Route path="flats/add" element={<FlatEditor/>}/>
               <Route path="bookings" element={<BookingsList/>}/>
+              <Route path="bookings/:id/details" element={<BookingDetails/>}/>
             </Route>
           </Route>
           <Route path={`${process.env.PUBLIC_URL}/auth`} element={<AuthLayout/>}>
