@@ -4,6 +4,7 @@ import {useMount} from "react-use";
 import useNotification from "modules/useNotification";
 import {full} from "common/helpers/addressConverter";
 import Skeleton from 'react-loading-skeleton';
+import Button from "../../components/utils/Button";
 
 function FlatDetails() {
     const { id } = useParams();
@@ -18,6 +19,12 @@ function FlatDetails() {
 
     return (
         <div>
+            <Button
+                icon="chevron-left"
+                click={() => navigate(`${process.env.PUBLIC_URL}/flats`)}
+            >
+                Back
+            </Button>
             <div>
                 <table>
                     <tbody>
