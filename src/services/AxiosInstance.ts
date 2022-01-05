@@ -1,9 +1,6 @@
 import axios from 'axios'
 import {USER_STORAGE_KEY} from "common/constants/userConstants";
 
-const userStorage = localStorage.getItem(USER_STORAGE_KEY);
-const userObject = userStorage ? JSON.parse(userStorage) : null;
-
 const AxiosInstance = axios.create({
   baseURL:
     process.env.NODE_ENV !== 'development'
@@ -14,13 +11,15 @@ const AxiosInstance = axios.create({
   maxContentLength: 5000,
 
   headers: {
-    'Content-type': 'application/json; charset=UTF-8',
-    'Authentication': userObject?.value
+    'Content-type': 'application/json; charset=UTF-8'
   },
 })
 
 AxiosInstance.interceptors.request.use(
   (request: any) => {
+    const userStorage = localStorage.getItem(USER_STORAGE_KEY);
+    const userObject = userStorage ? JSON.parse(userStorage) : null;
+    request.headers['Authentication'] = userObject?.value;
     return request
   },
   (error) => {
