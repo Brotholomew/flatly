@@ -46,14 +46,15 @@ const FlatForm = (props: FlatFormInterface) => {
             validationSchema={flat}
             onSubmit={(values, { setSubmitting }) => {
                 /* validation will not allow below values to be undefined */
-                assert(props.initialState?.id &&
-                    values.name &&
-                    values.facilities &&
-                    values.description &&
-                    values.streetName &&
-                    values.houseNumber &&
-                    values.postalCode &&
-                    values.city);
+                assert(
+                    values.name
+                    && values.facilities
+                    && values.description
+                    && values.streetName
+                    && values.houseNumber
+                    && values.postalCode
+                    && values.city
+                );
 
                 props.updateFlatCallback({
                     id: props.initialState?.id,
