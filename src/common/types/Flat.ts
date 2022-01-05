@@ -27,7 +27,7 @@ export interface Facility {
 
 export interface Image {
     id?: number,
-    name: string
+    path?: string
 }
 
 export const EmptyFlatAddress: FlatAddress = {

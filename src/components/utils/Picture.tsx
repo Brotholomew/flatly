@@ -1,12 +1,21 @@
-export interface imageInterface {
+import {Image} from "common/types/Flat";
+import getApiUrl from "common/helpers/apiUrl";
 
+export interface PictureProps {
+    image?: Image,
+    size?: number
 }
 
-const Picture = (props: imageInterface) => {
-    // TODO
+const Picture = (props: PictureProps) => {
+    const size = props?.size ?? 100;
+
+    const getSrc = () => props.image
+        ? `${getApiUrl()}${props.image?.path}`
+        : `${process.env.PUBLIC_URL}/imagePlaceholder.png`;
+
     return(
         <>
-            <p>Image Placeholder</p>
+            <img src={getSrc()} style={{maxHeight: `${size}px`}} alt="Flat"/>
         </>
     );
 }
