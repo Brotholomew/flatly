@@ -66,7 +66,7 @@ const DeletePopup = (props: deletePopupInterface) => {
                         <h3>Postal code:</h3> <h2>{props.flat.address.postalCode}</h2>
                     </div>
                     <div className={'popup-picture'}>
-                        <Picture />
+                        <Picture image={props.flat.images[0]}/>
                     </div>
                 </Popup>
             }

@@ -5,6 +5,7 @@ import useNotification from "modules/useNotification";
 import {full} from "common/helpers/addressConverter";
 import Skeleton from 'react-loading-skeleton';
 import Button from "../../components/utils/Button";
+import Picture from "components/utils/Picture";
 
 function FlatDetails() {
     const { id } = useParams();
@@ -60,6 +61,10 @@ function FlatDetails() {
                         <tr>
                             <td>Description</td>
                             <td>{ flat?.description ?? <Skeleton count={4}/> }</td>
+                        </tr>
+                        <tr>
+                            <td>Images</td>
+                            <td>{ flat?.images.map(image => <Picture image={image} key={image.id}/>)}</td>
                         </tr>
                     </tbody>
                 </table>

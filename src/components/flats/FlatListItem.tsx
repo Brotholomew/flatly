@@ -3,6 +3,7 @@ import {firstLine, secondLine} from "common/helpers/addressConverter";
 import {useNavigate} from "react-router-dom";
 import Button from "components/utils/Button";
 import {ButtonType} from "common/enums/ButtonType";
+import Picture from "components/utils/Picture";
 
 interface FlatListItemProps {
     flat: Flat,
@@ -25,6 +26,7 @@ function FlatListItem(props: FlatListItemProps) {
     return (
         <div className="list-item">
             <h2>{ props.flat.name }</h2>
+            <Picture image={props.flat.images[0]} key={props.flat.images[0]?.id}/>
             <ul>
                 <li>{ props.flat.rooms } rooms</li>
                 <li>{ firstLine(props.flat.address)} </li>

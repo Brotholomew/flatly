@@ -30,13 +30,16 @@ function FlatEditor() {
     }});
 
     const updateFlat = (flat: Flat) => {
+        const data: any = flat;
+        data.images = data.images.map((image: any) => image.id);
+
         setLoading(true);
         if (addMode) {
-            FlatService.store(flat)
+            FlatService.store(data)
                 .catch(() => console.error('Error while adding the flat'))
                 .finally(() => setLoading(false));
         } else {
-            FlatService.update(flat.id as number, flat)
+            FlatService.update(flat.id as number, data)
                 .catch(() => console.error('Error while updating the flat'))
                 .finally(() => setLoading(false));
         }
