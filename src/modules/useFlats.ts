@@ -1,18 +1,26 @@
 import {useState} from "react";
 import FlatService from "services/FlatService";
 import {Flat} from "common/types/Flat";
+import {useDispatch} from "react-redux";
+import {setPagination} from "../store/modules/pagination/actions";
+import {FLATS_CURRENT_PAGE, FLATS_MAX_PAGE} from "../store/modules/pagination/types";
 
 const useFlats = () => {
     const [flatsLoading, setFlatsLoading] = useState(false);
     const [flats, setFlats] = useState<Flat[]>([]);
     const [flat, setFlat] = useState<Flat>();
+    const dispatch = useDispatch();
 
-    const fetchFlats = () => {
+    const fetchFlats = (page: number | null = null) => {
         return new Promise((resolve, reject) => {
             setFlatsLoading(true);
-            return FlatService.index()
+            return FlatService.index(page === null ? null : { page })
                 .then((res: any) => {
                     setFlats(res.data);
+                    const maxPage = res.pagination.totalPages;
+                    const currentPage = Math.min(maxPage, res.pagination.page);
+                    dispatch(setPagination(FLATS_MAX_PAGE, {page: maxPage}));
+                    dispatch(setPagination(FLATS_CURRENT_PAGE, {page: currentPage}))
                     resolve(true);
                 })
                 .catch((e: any) => reject(e))
