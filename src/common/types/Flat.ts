@@ -1,3 +1,5 @@
+import {Facility} from "./Facility";
+
 export interface Flat {
     id?: number,
     name: string,
@@ -18,11 +20,6 @@ export interface FlatAddress {
     localNumber?: string
     postalCode: string,
     city: string
-}
-
-export interface Facility {
-    id: number,
-    name?: string
 }
 
 export interface Image {

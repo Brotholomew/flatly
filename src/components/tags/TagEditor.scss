@@ -1,0 +1,25 @@
+.tag-editor-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  max-height: 10vh;
+  max-width: 40vw;
+
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.tag-input {
+  flex: 1;
+}
+
+.tag-input:hover,
+.tag-input:focus-visible,
+.tag-input {
+  background: none;
+  border: none;
+  outline: none;
+}

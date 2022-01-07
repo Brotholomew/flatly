@@ -10,7 +10,6 @@ const Validator = () => {
         name: Yup.string().required('Required'),
         rooms: Yup.number().required('Required').min(1, 'The Flat needs to have at least one room'),
         area: Yup.number().required('Required').min(2.5, 'The Flat needs to be at least 2.5 metres squared'), /* Easter egg */
-        facilities: Yup.string().required('Required'),
         description: Yup.string().required('Required'),
 
         /* flat address validation */
