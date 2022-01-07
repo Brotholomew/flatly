@@ -21,7 +21,7 @@ function BookingListItem(props: BookingListItemProps) {
     return (
         <div className="list-item">
             <ul>
-                <li>Renter: { props.booking.renter.name }</li>
+                <li>Renter: { props.booking.userData }</li>
                 <li>Flat name: { props.booking.flat.name }</li>
                 <li>Check-in date: { props.booking.checkInDate }</li>
                 <li>Check-out date: { props.booking.checkOutDate }</li>

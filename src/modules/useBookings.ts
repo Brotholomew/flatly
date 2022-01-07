@@ -12,7 +12,7 @@ const useBookings = () => {
             setBookingsLoading(true);
             return BookingService.index()
                 .then((res: any) => {
-                    setBookings(res);
+                    setBookings(res.data);
                     resolve(true);
                 })
                 .catch((e: any) => reject(e))

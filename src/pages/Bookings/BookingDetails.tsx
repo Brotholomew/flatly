@@ -30,15 +30,7 @@ function BookingDetails() {
                     <tbody>
                         <tr>
                             <td>A booking for:</td>
-                        </tr>
-                        <tr>
-                            <td>{ booking?.renter.name ?? <Skeleton width={200}/> }</td>
-                        </tr>
-                        <tr>
-                            <td>{ booking?.renter.email ?? <Skeleton width={200}/> }</td>
-                        </tr>
-                        <tr>
-                            <td>{ booking?.renter.phoneNumber ?? <Skeleton width={200}/> }</td>
+                            <td>{ booking?.userData ?? <Skeleton width={200}/> }</td>
                         </tr>
                     </tbody>
                     <tbody>
@@ -62,7 +54,7 @@ function BookingDetails() {
                             <td>{ booking?.flat.name ?? <Skeleton width={200}/> }</td>
                         </tr>
                         <tr>
-                            <td>{ booking?.flat.rooms ?? <Skeleton width={40}/>}</td>
+                            <td>{ booking?.flat.rooms ?? <Skeleton width={40}/>} rooms</td>
                         </tr>
                         <tr>
                             <td>{ booking?.flat.address ? full(booking?.flat.address) : <Skeleton width={200}/> }</td>
