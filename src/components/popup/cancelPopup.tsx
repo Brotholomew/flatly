@@ -67,7 +67,7 @@ const CancelPopup = (props: cancelPopupInterface) => {
                         {info !== null && <p>{info}</p>}
                     </div>
                     <div className={'popup-info'}>
-                        <h3>Renter:</h3> <h2>{props.booking.renter.name}</h2>
+                        <h3>Renter:</h3> <h2>{props.booking.userData}</h2>
                         <h3>Flat:</h3> <h2>{props.booking.flat.name}</h2>
                         <h3>Check in:</h3> <h2>{props.booking.checkInDate}</h2>
                         <h3>Check out:</h3> <h2>{props.booking.checkOutDate}</h2>
