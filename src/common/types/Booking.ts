@@ -2,10 +2,10 @@ import {Flat} from "common/types/Flat";
 
 export interface Booking {
     id: string,
-    renter: Renter,
+    userData: string,
     checkInDate: string,
-    checkOutDate: string
-    flat: Flat
+    checkOutDate: string,
+    flat: Flat,
 }
 
 export interface Renter {
