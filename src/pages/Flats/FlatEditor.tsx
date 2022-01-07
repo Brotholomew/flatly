@@ -8,6 +8,7 @@ import useFlats from "modules/useFlats";
 import useNotification from "../../modules/useNotification";
 import {useState} from "react";
 import FlatService from "../../services/FlatService";
+import useFacilities from "../../modules/useFacilities";
 
 function FlatEditor() {
     const [loading, setLoading] = useState(false);
@@ -15,7 +16,8 @@ function FlatEditor() {
     const { id } = useParams();
     const { pathname } = useLocation();
     const { flat, fetchFlat } = useFlats();
-    const { error } = useNotification();
+    const { success, error } = useNotification();
+    const { fetchFacility, saveFacility } = useFacilities();
 
     const navigate = useNavigate();
     const addMode = !pathname.includes('edit');
@@ -36,10 +38,12 @@ function FlatEditor() {
         setLoading(true);
         if (addMode) {
             FlatService.store(data)
+                .then(() => success({title: 'successfully added the flat'}))
                 .catch(() => console.error('Error while adding the flat'))
                 .finally(() => setLoading(false));
         } else {
             FlatService.update(flat.id as number, data)
+                .then(() => success({title: 'successfully updated the flat'}))
                 .catch(() => console.error('Error while updating the flat'))
                 .finally(() => setLoading(false));
         }
@@ -54,7 +58,12 @@ function FlatEditor() {
                 Back
             </Button>
 
-            <FlatForm updateFlatCallback={updateFlat} initialState={addMode ? EmptyFlat : flat} loading={loading}/>
+            <FlatForm updateFlatCallback={updateFlat}
+                      initialState={addMode ? EmptyFlat : (flat ? flat : EmptyFlat)}
+                      loading={loading}
+                      addFacility={saveFacility}
+                      fetchFacility={fetchFacility}
+            />
         </div>
     );
 }

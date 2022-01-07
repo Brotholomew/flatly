@@ -1,12 +1,18 @@
 import React from "react";
 import { useField, FieldConfig } from 'formik';
 import Skeleton from "react-loading-skeleton";
+import TagEditor, {TagEditorInterface} from "../tags/TagEditor";
+import {Facility} from "../../common/types/Facility";
 
 interface ItemInterface {
     label: string,
     props: FieldConfig,
     id: string,
     loading?: boolean
+}
+
+interface TagAreaInterface extends ItemInterface {
+    tagEditorInterface: TagEditorInterface<Facility>
 }
 
 const FormItem = () => {
@@ -46,9 +52,24 @@ const FormItem = () => {
         );
     };
 
+    const TagArea = (props: TagAreaInterface) => {
+        return (
+            <div className={"form-text-area-input"}>
+                <label htmlFor={props.id || props.props.name}>{props.label}</label>
+                {!props.loading
+                    ?
+                    <TagEditor {...props.tagEditorInterface} />
+                    :
+                    <Skeleton/>
+                }
+            </div>
+        );
+    }
+
     return {
         TextInput,
-        TextArea
+        TextArea,
+        TagArea
     }
 };
 
