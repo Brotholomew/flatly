@@ -1,0 +1,28 @@
+@use '../../../themes/theme' as *;
+
+.details {
+  @include themify() {
+    margin: margins("wrapper");
+    padding: paddings("wrapper");
+
+    .tag-input {
+      background-color: transparent;
+      border: 0;
+
+      font-weight: weights("regular");
+    }
+  }
+}
+
+table {
+  @include themify() {
+    font-weight: weights("regular");
+    font-family: types("default");
+  }
+
+
+}
+
+td {
+  margin-right: 2vw;
+}

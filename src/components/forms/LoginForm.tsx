@@ -26,7 +26,7 @@ const LoginForm = (props: LoginFormInterface) => {
                 values.password = '';
             }}
         >
-            <Form>
+            <Form className={"form login"}>
                 <TextInput label={'E-Mail:'} props={{name: 'email', type: 'text'}} id={'email'} />
                 <TextInput label={'Password'} props={{name: 'password', type: 'password'}} id={'password'} />
 

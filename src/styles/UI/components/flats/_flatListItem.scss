@@ -1,0 +1,84 @@
+@use '../../../themes/theme' as *;
+@use '../../../tools/mixins' as *;
+
+.list-item {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr;
+  grid-template-rows: auto;
+
+  &-prop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    grid-row: 1 / 2;
+
+    margin: 0 2vw 0 2vw;
+    padding: 0;
+  }
+
+  &-picture {
+    grid-column: 1 / 2;
+  }
+
+  &-header {
+    grid-column: 2 / 3;
+  }
+
+  &-info {
+    grid-column: 3 / 4;
+  }
+
+  &-buttons {
+    grid-column: 4 / 5;
+  }
+
+  @include themify() {
+    background-color: variants("light-surface");
+    color: on("light-surface");
+    border: 3px solid variants("light-surface");
+
+    border-radius: borders("list-item-border-radius");
+
+    padding: paddings("list-item");
+    margin: margins("list-item");
+
+    &:hover {
+      border: 3px solid containers("tertiary");
+    }
+
+    @include screen-mobile() {
+      display: flex;
+      flex-direction: column;
+      padding-top: 0;
+      padding-bottom: 0;
+
+      &-prop {
+        margin: 2vw 0 2vw 0;
+        padding: 0;
+      }
+
+      &-info {
+        margin-left: 6vw;
+      }
+    }
+  }
+}
+
+@include screen-mobile() {
+  .list-item:nth-child(1) {
+    margin: 0;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-flat {
+  margin: 0 2vw 0 2vw;
+  padding: 0;
+
+  align-self: end;
+}

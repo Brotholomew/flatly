@@ -50,7 +50,7 @@ function FlatEditor() {
     }
 
     return (
-        <div>
+        <div className={'editor'}>
             <Button
                 icon="chevron-left"
                 click={() => navigate(`${process.env.PUBLIC_URL}/flats`)}

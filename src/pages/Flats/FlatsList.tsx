@@ -3,7 +3,7 @@ import {Flat} from "common/types/Flat";
 import FlatListItem from "components/flats/FlatListItem";
 import {useMount} from "react-use";
 import Skeleton from 'react-loading-skeleton';
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import DeletePopup from "../../components/popup/deletePopup";
 import {useState} from "react";
 import FlatService from "../../services/FlatService";
@@ -12,6 +12,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {FLATS_CURRENT_PAGE} from "../../store/modules/pagination/types";
 import Pagination from "../../components/pagination/pagination";
 import {setPagination} from "../../store/modules/pagination/actions";
+import Button from "../../components/utils/Button";
+import {ButtonType} from "../../common/enums/ButtonType";
 
 function FlatsList() {
     const { flatsLoading, flats, fetchFlats } = useFlats();
@@ -19,6 +21,7 @@ function FlatsList() {
     const { error, success } = useNotification();
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const [toBeDeleted, setToBeDeleted] = useState<Flat | null>(null);
@@ -53,9 +56,11 @@ function FlatsList() {
     }
 
     return (
-        <div>
+        <div className={"list"}>
             <DeletePopup show={showPopup} close={setShowPopup} flat={toBeDeleted} deleteFlatCallback={deleteFlat}/>
-            <Link to={`${process.env.PUBLIC_URL}/flats/add`}>Create new flat</Link>
+            <div className={"add-flat"}>
+                <Button type={ButtonType.BLANK} click={() => navigate(`${process.env.PUBLIC_URL}/flats/add`)} icon={'plus'}>Add a new Flat</Button>
+            </div>
             {
                 flatsLoading
                 ? renderSkeleton()

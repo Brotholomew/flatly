@@ -1,0 +1,102 @@
+@use '../../../themes/theme' as *;
+
+.default-button {
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @include themify() {
+    font-family: types("default");
+    font-weight: weights("bold");
+
+    margin: margins("button-margin");
+    padding: paddings("button-padding");
+
+    border-radius: borders("button-border-radius");
+    border: borders("button");
+
+    &--popup-close {
+      margin: 0;
+    }
+
+    &--info {
+      color: on("primary");
+      background-color: variants("primary");
+
+      &:hover {
+        color: on("primary-container");
+        background-color: containers("primary");
+      }
+    }
+
+    &--error {
+      color: on("error");
+      background-color: variants("error");
+    }
+
+    &--pagination {
+      background-color: transparent;
+      color: inherit;
+
+      &:hover {
+        color: on("tertiary-container");
+        background-color: containers("tertiary");
+      }
+    }
+
+    &--pagination-current {
+      color: on("tertiary");
+      background-color: variants("tertiary");
+
+      &:hover {
+        color: on("tertiary-container");
+        background-color: containers("tertiary");
+      }
+    }
+
+    &--blank {
+      background-color: inherit;
+      color: on("background");
+
+      &:hover {
+        color: variants("primary");
+      }
+    }
+
+    &--switch-button {
+      background-color: inherit;
+      color: on("background");
+
+      &-selected {
+        background-color: variants("primary");
+        color: on("primary");
+
+        &:hover {
+          background-color: containers("primary");
+          color: on("primary-container");
+        }
+      }
+
+      &:hover {
+        background-color: containers("primary");
+        color: on("primary-container");
+      }
+    }
+
+    &--tag-deletion {
+      background-color: transparent;
+      font-size: sizes("tertiary-text");
+      margin: 2px 0 0 4px;
+      padding: 0;
+
+      align-self: start;
+    }
+  }
+}
+
+/* disabled button override */
+button.default-button--blank:disabled, button.default-button--blank:disabled:hover {
+   cursor: auto;
+   color: transparent;
+}

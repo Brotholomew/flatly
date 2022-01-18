@@ -1,13 +1,17 @@
+@use '../../../themes/theme' as *;
+
 .tag-editor-wrapper {
+  @include themify() {
+    background-color: variants("surface");
+    color: on("surface");
+    border: 3px solid variants("surface-variant");
+  }
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
 
-  max-height: 10vh;
-  max-width: 40vw;
-
-  border: 2px solid black;
   border-radius: 10px;
   padding: 3px;
 }

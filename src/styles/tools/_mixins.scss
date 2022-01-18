@@ -1,0 +1,29 @@
+@mixin screen-max-width($pixels) {
+  @media screen and (max-width: $pixels) {
+    @content;
+  }
+}
+
+@mixin screen-min-width($pixels) {
+  @media screen and (min-width: $pixels) {
+    @content;
+  }
+}
+
+@mixin screen-mobile {
+  @include screen-max-width(450px) {
+    @content;
+  }
+}
+
+@mixin screen-tablet {
+  @include screen-max-width(800px) {
+    @content;
+  }
+}
+
+@mixin screen-desktop {
+  @include screen-min-width(800px) {
+    @content;
+  }
+}

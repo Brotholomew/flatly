@@ -1,7 +1,9 @@
+import GlobalFooter from "../../utils/GlobalFooter";
+
 function Footer() {
 
     return (
-        <h3>This is app footer</h3>
+        <GlobalFooter expanded={true} />
     );
 }
 

@@ -1,6 +1,5 @@
 import {Tag} from "../../common/types/Tag";
 import TagBrick from "./TagBrick";
-import "./TagEditor.scss"
 
 export interface TagEditorInterface<T extends Tag> {
     addTag: (name: string) => Promise<any>,

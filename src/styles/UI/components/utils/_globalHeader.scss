@@ -1,0 +1,37 @@
+@use '../../../themes/theme' as *;
+@use '../../../tools/mixins' as *;
+
+.header {
+  display: flex;
+  justify-content: space-around;
+
+  @include themify() {
+    margin: margins("header");
+
+    &.left {
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+      justify-content: space-around;
+      margin: 0;
+    }
+
+    &.right {
+      margin: 0;
+    }
+
+    @include screen-mobile() {
+      margin: 2vh 0 10vh 0;
+      flex-direction: column-reverse;
+
+      &.right {
+        display: flex;
+        align-items: center;
+      }
+
+      &.left {
+        justify-content: space-evenly;
+      }
+    }
+  }
+}

@@ -25,24 +25,22 @@ function FlatListItem(props: FlatListItemProps) {
 
     return (
         <div className="list-item">
-            <h2>{ props.flat.name }</h2>
-            <Picture image={props.flat.images[0]} key={props.flat.images[0]?.id}/>
-            <ul>
+            <div className={"list-item-prop list-item-header"}><h2>{ props.flat.name }</h2></div>
+            <div className={"list-item-prop list-item-picture"}><Picture image={props.flat.images[0]} key={props.flat.images[0]?.id}/></div>
+            <ul className={"list-item-prop list-item-info"}>
                 <li>{ props.flat.rooms } rooms</li>
                 <li>{ firstLine(props.flat.address)} </li>
                 <li>{ secondLine(props.flat.address)} </li>
             </ul>
-            <div className="list-item__buttons">
+            <div className="list-item-prop list-item-buttons">
                 <Button
                     click={() => handleDetailsClick()}
-                    icon="eye"
                 >
                     Details
                 </Button>
                 <Button
                     click={() => handleEditClick()}
                     type={ButtonType.INFO}
-                    icon="pen"
                 >
                     Edit
                 </Button>

@@ -1,0 +1,26 @@
+@use '../../../themes/theme' as *;
+
+.editor {
+  @include themify() {
+    margin: margins("wrapper");
+    padding: paddings("wrapper");
+
+    .tag-input {
+      background-color: transparent;
+      border: 0;
+
+      font-weight: weights("regular");
+    }
+  }
+}
+
+.tag-brick {
+  background-color: transparent;
+
+  @include themify() {
+    font-family: types("default");
+    font-size: sizes("secondary-text")
+  }
+
+
+}

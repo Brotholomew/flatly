@@ -7,12 +7,15 @@ function AuthLayout() {
 
     return (
         <>
-            <Header/>
-            <Body>
-                <Outlet/>
-            </Body>
+            <div className={'auth-container'}>
+                <Header/>
+                <Body>
+                    <Outlet/>
+                </Body>
+            </div>
             <Footer/>
         </>
+
     );
 }
 

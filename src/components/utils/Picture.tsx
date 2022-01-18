@@ -15,7 +15,7 @@ const Picture = (props: PictureProps) => {
 
     return(
         <>
-            <img src={getSrc()} style={{maxHeight: `${size}px`}} alt="Flat"/>
+            <img className={"picture"} src={getSrc()} style={{maxHeight: `${size}px`}} alt="Flat"/>
         </>
     );
 }

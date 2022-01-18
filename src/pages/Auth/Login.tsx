@@ -17,7 +17,6 @@ function Login() {
 
     return (
         <div>
-            <h4>john@doe.com | password</h4>
             <LoginForm handleLoginCallback={handleLogin} isLoading={isLoading} />
         </div>
     );

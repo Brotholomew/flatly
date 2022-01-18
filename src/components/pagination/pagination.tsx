@@ -32,6 +32,7 @@ const Pagination = (props: paginationInterface) => {
                     click={() => changePage(currentPage - 1)}
                     disabled={current === min}
                     icon={'caret-left'}
+                    type={ButtonType.BLANK}
                 />
 
                 {pages.map((value, index) =>
@@ -49,6 +50,7 @@ const Pagination = (props: paginationInterface) => {
                     click={() => changePage(currentPage + 1)}
                     disabled={current === max}
                     icon={'caret-right'}
+                    type={ButtonType.BLANK}
                 />
             </>
         );
