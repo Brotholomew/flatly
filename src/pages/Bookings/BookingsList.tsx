@@ -40,7 +40,7 @@ function BookingsList() {
     }
 
     return (
-        <div>
+        <div className={'list'}>
             <CancelPopup show={showPopup} close={setShowPopup} booking={toBeCanceled} cancelBookingCallback={deleteBooking}/>
             {
                 bookingsLoading
