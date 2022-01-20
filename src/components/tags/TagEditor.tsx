@@ -1,16 +1,28 @@
 import {Tag} from "../../common/types/Tag";
 import TagBrick from "./TagBrick";
+import {useEffect} from "react";
 
 export interface TagEditorInterface<T extends Tag> {
     addTag: (name: string) => Promise<any>,
     deleteTag: (tag: T) => void,
     initialTags: T[]
+
+    focused: boolean,
+    setFocused: (flag: boolean) => void
 }
 
 const TagEditor = <T extends Tag,> (props: TagEditorInterface<T>) => {
+    useEffect(() => {
+       if (!props.focused){
+           document.getElementById('tag-input')?.focus();
+       }
+    });
+
     const addTag = (name: string) => {
         props.addTag(name)
             .catch((e: any) => console.error(e))
+
+        props.setFocused(true);
     }
 
     const inputChange = (event: any) => {
@@ -26,9 +38,10 @@ const TagEditor = <T extends Tag,> (props: TagEditorInterface<T>) => {
             event.target.value = "";
 
             // set focus on the input again, once the component re-renders
-            setTimeout(() => {
-                document.getElementById('tag-input')?.focus();
-            }, 100)
+            props.setFocused(false);
+
+            // in case the component does not re-render, set the focus here too
+            document.getElementById('tag-input')?.focus();
         }
     }
 

@@ -23,6 +23,7 @@ const FlatForm = (props: FlatFormInterface) => {
 
     const [images, setImages] = useState<Image[]>([]);
     const [internalFacilities, updateInternalFacilities] = useState<Facility[]>(props.initialState.facilities);
+    const [tagEditorFocused, setTagEditorFocused] = useState<boolean>(true)
 
     useEffect(() => {
         if (props.initialState.facilities.length > 0)
@@ -131,7 +132,9 @@ const FlatForm = (props: FlatFormInterface) => {
                            tagEditorInterface={{
                                addTag: addFacility,
                                deleteTag: deleteFacility,
-                               initialTags: internalFacilities
+                               initialTags: internalFacilities,
+                               focused: tagEditorFocused,
+                               setFocused: setTagEditorFocused
                            }}
                 />
 

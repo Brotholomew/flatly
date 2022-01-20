@@ -74,6 +74,11 @@
 .list {
   display: flex;
   flex-direction: column;
+
+  @include themify() {
+    padding: paddings("wrapper");
+    margin: margins("wrapper");
+  }
 }
 
 .add-flat {

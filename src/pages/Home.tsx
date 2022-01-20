@@ -1,11 +1,9 @@
-import useAuth from "modules/useAuth";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {SUPPORTED_PAGES} from "../store/modules/page/types";
 import {useSelector} from "react-redux";
 
 function Home() {
-    const { logout } = useAuth();
     const [chosenPage] = useState<SUPPORTED_PAGES>(useSelector((state: any) => state.pageReducers));
     const navigate = useNavigate();
 
