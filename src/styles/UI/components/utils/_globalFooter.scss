@@ -1,0 +1,68 @@
+@use '../../../themes/theme' as *;
+@use '../../../tools/mixins' as *;
+
+.footer {
+  flex: 0;
+
+  margin-top: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  .separator {
+    grid-column: 2 / 3;
+
+    @include themify() {
+      border-color: on("tertiary");
+    }
+  }
+
+  &-component {
+    display: grid;
+
+    @include themify() {
+      $separator-width: calc(2 * nth(margins("separator"), 2) + nth(borders("separator"), 1));
+      $footer-remaining: calc(50% - $separator-width);
+      grid-template-columns: $footer-remaining $separator-width $footer-remaining;
+
+      padding: paddings("footer");
+
+      &.lower {
+        background-color: variants("tertiary");
+        color: on("tertiary");
+      }
+
+      &.upper {
+        background-color: containers("tertiary");
+        color: on("tertiary-container");
+      }
+    }
+  }
+
+  &-subcomponent {
+    display: flex;
+    flex-direction: column;
+
+    &.left {
+      align-items: end;
+      grid-column: 1 / 2;
+
+      @include screen-mobile() {
+        margin-right: 4vw;
+      }
+    }
+
+    &.right {
+      align-items: start;
+      grid-column: 3 / 4;
+
+      @include screen-mobile() {
+        margin-left: 4vw;
+      }
+    }
+
+    p {
+      width: fit-content;
+    }
+  }
+}

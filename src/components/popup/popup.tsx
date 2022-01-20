@@ -2,8 +2,6 @@ import Button, {ButtonProps} from "../utils/Button";
 import {WithChildren} from "../../common/types/PropTypes";
 import {ButtonType} from "../../common/enums/ButtonType";
 
-import './popup.scss'
-
 export interface buttonsInterface {
     text: string,
     props: ButtonProps
@@ -23,7 +21,7 @@ const Popup = (props: popupInterface) => {
                 <div className={'popup-blur'}>
                     <div className={'popup-window'}>
                         <div className={'popup-header'}>
-                            <h3>{props.header}</h3>
+                            <h4>{props.header}</h4>
                             <Button
                                 icon={'times'}
                                 click={props.close}

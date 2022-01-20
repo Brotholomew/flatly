@@ -19,11 +19,11 @@ const FormItem = () => {
     const TextInput = ({ label, props, id, loading }: ItemInterface) => {
         const [field, meta] = useField(props);
         return (
-            <div className={"form-text-input"}>
+            <div className={"form text-input"}>
                 <label htmlFor={id || props.name}>{label}</label>
                 {!loading
                     ?
-                    <input className="text-input" {...field} {...props} />
+                    <input className="input" {...field} {...props} />
                     :
                     <Skeleton/>
                 }
@@ -38,10 +38,10 @@ const FormItem = () => {
         const [field, meta] = useField(props);
         return (
             <div className={"form-text-area-input"}>
-                <label htmlFor={id || props.name}>{label}</label>
+                <label htmlFor={"txtarea"}>{label}</label>
                 {!loading
                     ?
-                    <textarea className="text-area" {...field} {...props} />
+                    <textarea id="txtarea" className="text-area" {...field} {...props} />
                     :
                     <Skeleton/>
                 }

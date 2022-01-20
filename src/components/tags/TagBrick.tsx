@@ -1,6 +1,6 @@
 import {Tag} from "../../common/types/Tag";
 import Button from "../utils/Button";
-import "./TagBrick.scss"
+import {ButtonType} from "../../common/enums/ButtonType";
 
 interface TagInterface<T extends Tag> {
     deleteTag: (tag: T) => void,
@@ -14,6 +14,7 @@ const TagBrick = <T extends Tag,> (props: TagInterface<T>) => {
             <Button
                 icon={'times'}
                 click={() => props.deleteTag(props.tag)}
+                type={ButtonType.TAG_DELETION}
             />
         </div>
     );

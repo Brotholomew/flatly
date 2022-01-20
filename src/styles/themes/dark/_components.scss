@@ -1,0 +1,64 @@
+@use '../../tools/mixins' as *;
+
+$body-margin: 0vw;
+$label-margin: 5px 0 0 0;
+$button-margin: 10px 0 10px;
+$input-margin: 0px;
+$separator-margin: 0 1vw 0 1vw;
+$auth-container-margin: 10vh auto 0 auto;
+$header-margin: 10vh 0 2vh 0;
+$list-item-margin: 2vh 2vw 2vh 2vw;
+$wrapper-margin: 0 2vw 0 2vw;
+
+$body-padding: 0px;
+$button-padding: 10px;
+$input-padding: 10px;
+$separator-padding: 0px;
+$footer-padding: 10px 0 10px 0;
+$list-item-padding: 2vh 2vw 2vh 2vw;
+$wrapper-padding: 0 2vw 0 2vw;
+
+$global-border-radius: 10px;
+$global-border: 0;
+$input-border: 3px solid;
+$separator-border: 2px solid;
+
+@include screen-tablet() {
+  $header-margin: 2vh 0 2vh 0;
+}
+
+@include screen-mobile() {
+  $header-margin: 2vh 0 2vh 0;
+}
+
+$margins: (
+  "body": $body-margin,
+  "label": $label-margin,
+  "button-margin": $button-margin,
+  "input-margin": $input-margin,
+  "separator": $separator-margin,
+  "auth-container": $auth-container-margin,
+  "header": $header-margin,
+  "list-item": $list-item-margin,
+  "wrapper": $wrapper-margin,
+);
+
+$paddings: (
+  "body": $body-padding,
+  "button-padding": $button-padding,
+  "input-padding": $input-padding,
+  "separator": $separator-padding,
+  "footer": $footer-padding,
+  "list-item": $list-item-padding,
+  "wrapper": $wrapper-padding,
+);
+
+$borders: (
+  "button-border-radius": $global-border-radius,
+  "input-border-radius": $global-border-radius,
+  "list-item-border-radius": $global-border-radius,
+
+  "button": $global-border,
+  "input": $input-border,
+  "separator": $separator-border,
+);

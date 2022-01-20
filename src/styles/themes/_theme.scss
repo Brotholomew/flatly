@@ -1,0 +1,76 @@
+@use './default/default' as default;
+@use './dark/dark' as dark;
+
+$themes: (
+    "default": default.$theme,
+    "dark": dark.$theme,
+);
+
+$components: (
+    colors: ("variants", "containers", "on"),
+    fonts: ("types", "weights", "sizes"),
+    components: ("margins", "paddings", "borders")
+);
+
+@mixin themify() {
+    @each $theme-name, $theme in $themes {
+        .theme-#{$theme-name} & {
+            $theme-map: () !global;
+            @each $component, $array in $components {
+                @each $map in $array {
+                    $value: map-get($theme, $map);
+                    $theme-map: map-merge($theme-map, ($map: $value)) !global;
+                }
+            }
+
+            @content;
+            $theme-map: null !global;
+        }
+    }
+}
+
+@function get-themepart($themepart) {
+    @return map-get($theme-map, $themepart);
+}
+
+// get color themeparts
+@function variants($key) {
+    @return map-get(get-themepart("variants"), $key);
+}
+
+@function containers($key) {
+    @return map-get(get-themepart("containers"), $key);
+}
+
+@function on($key) {
+    @return map-get(get-themepart("on"), $key);
+}
+// -- * --
+
+// get font themeparts
+@function types($key) {
+    @return map-get(get-themepart("types"), $key);
+}
+
+@function weights($key) {
+    @return map-get(get-themepart("weights"), $key);
+}
+
+@function sizes($key) {
+    @return map-get(get-themepart("sizes"), $key);
+}
+// -- * --
+
+// get component themeparts
+@function margins($key) {
+    @return map-get(get-themepart("margins"), $key);
+}
+
+@function paddings($key) {
+    @return map-get(get-themepart("paddings"), $key);
+}
+
+@function borders($key) {
+    @return map-get(get-themepart("borders"), $key);
+}
+// -- * --

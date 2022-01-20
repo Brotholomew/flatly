@@ -20,7 +20,7 @@ function FlatDetails() {
 
 
     return (
-        <div>
+        <div className={"details"}>
             <Button
                 icon="chevron-left"
                 click={() => navigate(`${process.env.PUBLIC_URL}/flats`)}
@@ -28,46 +28,40 @@ function FlatDetails() {
                 Back
             </Button>
             <div>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>ID</td>
-                            <td>{ flat?.id ?? <Skeleton width={80}/> }</td>
-                        </tr>
-                        <tr>
-                            <td>Name</td>
-                            <td>{ flat?.name ?? <Skeleton width={200}/> }</td>
-                        </tr>
-                        <tr>
-                            <td>Rooms</td>
-                            <td>{ flat?.rooms ?? <Skeleton width={40}/>}</td>
-                        </tr>
-                        <tr>
-                            <td>Area</td>
-                            <td>{ flat?.area ?? <Skeleton/> }</td>
-                        </tr>
-                        <tr>
-                            <td>Facilities</td>
-                            <td>{
-                                flat?.facilities
-                                    ? flat?.facilities.map(item => item.name).join(', ')
-                                    : <Skeleton width={180}/> }
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Address</td>
-                            <td>{ flat?.address ? full(flat?.address) : <Skeleton width={200}/> }</td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td>{ flat?.description ?? <Skeleton count={4}/> }</td>
-                        </tr>
-                        <tr>
-                            <td>Images</td>
-                            <td>{ flat?.images.map(image => <Picture image={image} key={image.id}/>)}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <label>ID</label>
+                <h3>{ flat?.id ?? <Skeleton width={80}/> }</h3>
+                <div className={'separator-empty'} />
+
+                <label>Name</label>
+                <h3>{ flat?.name ?? <Skeleton width={200}/> }</h3>
+                <div className={'separator-empty'} />
+
+                <label>Rooms</label>
+                <h3>{ flat?.rooms ?? <Skeleton width={40}/>}</h3>
+                <div className={'separator-empty'} />
+
+                <label>Area</label>
+                <h3>{ flat?.area ?? <Skeleton/> }</h3>
+                <div className={'separator-empty'} />
+                <label>Facilities</label>
+                <h3>{
+                    flat?.facilities
+                        ? flat?.facilities.map(item => item.name).join(', ')
+                        : <Skeleton width={180}/> }
+                </h3>
+                <div className={'separator-empty'} />
+
+                <label>Address</label>
+                <h3>{ flat?.address ? full(flat?.address) : <Skeleton width={200}/> }</h3>
+                <div className={'separator-empty'} />
+
+                <label>Description</label>
+                <h3>{ flat?.description ?? <Skeleton count={4}/> }</h3>
+                <div className={'separator-empty'} />
+
+                <label>Images</label>
+                <h3>{ flat?.images.map(image => <Picture image={image} key={image.id}/>)}</h3>
+                <div className={'separator-empty'} />
             </div>
         </div>
     );

@@ -59,14 +59,21 @@ const DeletePopup = (props: deletePopupInterface) => {
                         <h1>{title}</h1>
                         {info !== null && <p>{info}</p>}
                     </div>
-                    <div className={'popup-info'}>
-                        <h3>Flat name:</h3> <h2>{props.flat.name}</h2>
-                        <h3>No of rooms:</h3> <h2>{props.flat.rooms}</h2>
-                        <h3>Street name:</h3> <h2>{props.flat.address.streetName}</h2>
-                        <h3>Postal code:</h3> <h2>{props.flat.address.postalCode}</h2>
-                    </div>
                     <div className={'popup-picture'}>
                         <Picture image={props.flat.images[0]}/>
+                    </div>
+                    <div className={'popup-info'}>
+                        <h4>Flat name:</h4> <h2>{props.flat.name}</h2>
+                        <div className={"separator-empty"} />
+
+                        <h4>No of rooms:</h4> <h2>{props.flat.rooms}</h2>
+                        <div className={"separator-empty"} />
+
+                        <h4>Street name:</h4> <h2>{props.flat.address.streetName}</h2>
+                        <div className={"separator-empty"} />
+
+                        <h4>Postal code:</h4> <h2>{props.flat.address.postalCode}</h2>
+                        <div className={"separator-empty"} />
                     </div>
                 </Popup>
             }

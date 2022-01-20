@@ -1,6 +1,5 @@
 import {Tag} from "../../common/types/Tag";
 import TagBrick from "./TagBrick";
-import "./TagEditor.scss"
 import {useEffect} from "react";
 
 export interface TagEditorInterface<T extends Tag> {

@@ -1,0 +1,8 @@
+@forward 'flatForm';
+@forward 'loginForm';
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+}

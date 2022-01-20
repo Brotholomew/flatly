@@ -1,0 +1,37 @@
+$variants: (
+    "primary": #006064,
+    "secondary": #33691E,
+    "tertiary": #880E4F,
+
+    "background": #FFFFFF,
+    "light-surface": #E0E0E0,
+    "surface": #616161,
+    "surface-variant": #263238,
+    "outline": #BDBDBD,
+    "error": #B71C1C
+);
+
+$containers: (
+    "primary": #0097A7,
+    "secondary": #689F38,
+    "tertiary": #C2185B
+);
+
+$on: (
+    "primary": white,
+    "primary-container": black,
+
+    "secondary": white,
+    "secondary-container": black,
+    
+    "tertiary": white,
+    "tertiary-container": black,
+    
+    "background": black,
+    "light-surface": black,
+    "surface": white,
+    "surface-variant": white,
+
+    "outline": black,
+    "error": white 
+)

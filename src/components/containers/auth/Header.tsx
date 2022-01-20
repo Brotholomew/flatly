@@ -1,12 +1,9 @@
-import {Link} from "react-router-dom";
+import GlobalHeader from "../../utils/GlobalHeader";
 
 function Header() {
 
     return (
-        <>
-            <h3>This is auth header</h3>
-            <Link to={`${process.env.PUBLIC_URL}/`}>Home</Link>
-        </>
+        <GlobalHeader extended={false} sbProps={{options: [], selectedIndex: 0}} />
     );
 }
 
