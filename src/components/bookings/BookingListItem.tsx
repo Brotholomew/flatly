@@ -5,6 +5,7 @@ import {ButtonType} from "common/enums/ButtonType";
 
 interface BookingListItemProps {
     booking: Booking
+    cancelCallback: (booking: Booking) => void
 }
 
 function BookingListItem(props: BookingListItemProps) {
@@ -14,14 +15,12 @@ function BookingListItem(props: BookingListItemProps) {
         navigate(`${process.env.PUBLIC_URL}/bookings/${props.booking.id}/details`);
     }
 
-    const handleCancelClick = () => {
-        
-    }
+    const handleCancelClick = props.cancelCallback;
 
     return (
         <div className="list-item">
             <ul>
-                <li>Renter: { props.booking.renter.name }</li>
+                <li>Renter: { props.booking.userData }</li>
                 <li>Flat name: { props.booking.flat.name }</li>
                 <li>Check-in date: { props.booking.checkInDate }</li>
                 <li>Check-out date: { props.booking.checkOutDate }</li>
@@ -34,11 +33,11 @@ function BookingListItem(props: BookingListItemProps) {
                     Details
                 </Button>
                 <Button
-                    click={() => handleCancelClick()}
+                    click={() => handleCancelClick(props.booking)}
                     type={ButtonType.ERROR}
                     icon="trash"
                 >
-                    Cancel
+                    Cancel booking
                 </Button>
             </div>
         </div>
