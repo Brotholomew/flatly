@@ -41,6 +41,7 @@ const CancelPopup = (props: cancelPopupInterface) => {
                 }
             }];
 
+
     return(
         <>
             {props.booking !== null &&
