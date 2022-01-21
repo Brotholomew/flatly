@@ -2,6 +2,7 @@ import {Booking} from "common/types/Booking";
 import {useNavigate} from "react-router-dom";
 import Button from "components/utils/Button";
 import {ButtonType} from "common/enums/ButtonType";
+import Picture from "../utils/Picture";
 
 interface BookingListItemProps {
     booking: Booking
@@ -19,16 +20,16 @@ function BookingListItem(props: BookingListItemProps) {
 
     return (
         <div className="list-item">
-            <ul>
+            <div className={"list-item-prop list-item-header"}><h2>{ props.booking.flat.name }</h2></div>
+            <div className={"list-item-prop list-item-picture"}><Picture image={props.booking.flat.images[0]} key={props.booking.flat.images[0]?.id}/></div>
+            <ul className={"list-item-prop list-item-info"}>
                 <li>Renter: { props.booking.userData }</li>
-                <li>Flat name: { props.booking.flat.name }</li>
                 <li>Check-in date: { props.booking.checkInDate }</li>
                 <li>Check-out date: { props.booking.checkOutDate }</li>
             </ul>
-            <div className="list-item__buttons">
+            <div className="list-item-prop list-item-buttons">
                 <Button
                     click={() => handleDetailsClick()}
-                    icon="eye"
                 >
                     Details
                 </Button>

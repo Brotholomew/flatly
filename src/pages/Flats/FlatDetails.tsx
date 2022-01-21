@@ -60,7 +60,13 @@ function FlatDetails() {
                 <div className={'separator-empty'} />
 
                 <label>Images</label>
-                <h3>{ flat?.images.map(image => <Picture image={image} key={image.id}/>)}</h3>
+                <div className={"image-item-wrapper"}>
+                    {flat?.images.map((image, index) => (
+                        <div key={index} className="image-item">
+                            <Picture image={image}/>
+                        </div>
+                    ))}
+                </div>
                 <div className={'separator-empty'} />
             </div>
         </div>

@@ -11,14 +11,14 @@ const useFlats = () => {
     const [flat, setFlat] = useState<Flat>();
     const dispatch = useDispatch();
 
-    const fetchFlats = (page: number | null = null) => {
+    const fetchFlats = (params: any | null = null) => {
         return new Promise((resolve, reject) => {
             setFlatsLoading(true);
-            return FlatService.index(page === null ? null : { page })
+            return FlatService.index(params === null ? null : params)
                 .then((res: any) => {
                     setFlats(res.data);
-                    const maxPage = res.pagination.totalPages;
-                    const currentPage = Math.min(maxPage, res.pagination.page);
+                    const maxPage = Math.max(1, res.pagination.totalPages);
+                    const currentPage = Math.max(1, Math.min(maxPage, res.pagination.page));
                     dispatch(setPagination(FLATS_MAX_PAGE, {page: maxPage}));
                     dispatch(setPagination(FLATS_CURRENT_PAGE, {page: currentPage}))
                     resolve(true);

@@ -24,6 +24,7 @@ function CreateRoutes() {
               <Route path="flats/add" element={<FlatEditor/>}/>
               <Route path="bookings" element={<BookingsList/>}/>
               <Route path="bookings/:id/details" element={<BookingDetails/>}/>
+              <Route path="bookings/flat/:id" element={<BookingsList/>}/>
             </Route>
           </Route>
           <Route path={`${process.env.PUBLIC_URL}/auth`} element={<AuthLayout/>}>

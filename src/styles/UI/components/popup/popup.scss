@@ -4,12 +4,16 @@
 
 .popup {
   &-window {
-    background: white;
+    @include themify() {
+      background: variants("background");
+      color: on("background");
+    }
+
     border-radius: 10px;
     display: flex;
     flex-direction: column;
 
-    position: relative;
+
     width: 50%;
     margin: calc(100vh - 85vh - 20px) auto 0 auto;
     padding: 20px;
@@ -49,11 +53,19 @@
   }
 
   &-blur {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
     background: #00000050;
   }
+
+  &-picture {
+    display: flex;
+    justify-content: center;
+
+    max-height: 15vh;
+  }
 }
+

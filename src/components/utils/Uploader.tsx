@@ -1,10 +1,14 @@
 import {useEffect, useState} from "react";
-import ImageUploading, { ImageListType } from "react-images-uploading";
+import ImageUploading, {ImageListType} from "react-images-uploading";
 import {MAX_UPLOADER_IMAGES} from "common/constants/uploaderConstants";
 import {ImageType} from "react-images-uploading/dist/typings";
 import {Image} from "common/types/Flat";
 import useImage from "modules/useImage";
 import {convertToImageFromImageType, convertToImageTypeFromImage} from "common/helpers/imageTypeConverter";
+import Button from "./Button";
+import {ButtonType} from "../../common/enums/ButtonType";
+import Picture from "./Picture";
+import getApiUrl from "../../common/helpers/apiUrl";
 
 export interface UploaderProps {
     defaultImages?: Image[],
@@ -80,16 +84,18 @@ const Uploader = (props: UploaderProps) => {
                         &nbsp;
                         <button onClick={onImageRemoveAll} className={"default-button default-button--error"}>Remove all images</button>
                         {
-                            loading && <span>Uploading</span>
+                            loading && <p>Uploading</p>
                         }
+                        <div className={"image-item-wrapper"}>
                         {imageList.map((image, index) => (
                             <div key={index} className="image-item">
-                                <img src={image.dataURL} alt="" width="100" />
-                                <div className="image-item__btn-wrapper">
-                                    <button onClick={() => onImageRemove(index)}>Remove</button>
+                                <div className="image-item-btn-wrapper">
+                                    <Button icon={'trash'} type={ButtonType.ERROR} click={() => onImageRemove(index)}/>
                                 </div>
+                                <Picture image={{id: image.id, path: image.dataURL?.replaceAll(`${getApiUrl()}`, "")}}/>
                             </div>
                         ))}
+                        </div>
                     </div>
                 )}
             </ImageUploading>

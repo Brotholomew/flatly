@@ -1,0 +1,21 @@
+@use '../../../themes/theme' as *;
+
+.picture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  @include themify() {
+    background-color: variants("background");
+
+    border-radius: borders("list-item-border-radius");
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

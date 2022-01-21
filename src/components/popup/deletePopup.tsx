@@ -2,6 +2,9 @@ import {Flat} from "../../common/types/Flat";
 import Popup from "./popup";
 import {ButtonType} from "../../common/enums/ButtonType";
 import Picture from "../utils/Picture";
+import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import useBookings from "../../modules/useBookings";
 
 export interface deletePopupInterface {
     flat: Flat | null,
@@ -11,10 +14,26 @@ export interface deletePopupInterface {
 }
 
 const DeletePopup = (props: deletePopupInterface) => {
+    const [active, setActive] = useState<boolean>(false);
+    const { fetchFlatBookings } = useBookings();
+
+    useEffect(() => {
+        if (props?.flat === undefined) return;
+
+        fetchFlatBookings(props?.flat?.id)
+            .then((rsp: any) => {
+                if (rsp)
+                    setActive(true);
+            })
+            .catch(() => setActive(false))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.flat]);
+
+    const navigate = useNavigate();
     const header = 'Delete flat'
-    const title = props.flat?.active ? 'Confirm flat deletion' : 'Can\'t delete the flat';
-    const info = props.flat?.active ? null : 'First cancel all the bookings on this flat';
-    const buttons = props.flat?.active
+    const title = !active ? 'Confirm flat deletion' : 'Can\'t delete the flat';
+    const info = !active ? null : 'First cancel all the bookings on this flat';
+    const buttons = !active
         ?
             [{
                 text: 'Delete',
@@ -38,7 +57,7 @@ const DeletePopup = (props: deletePopupInterface) => {
                 {
                     text: 'Show bookings',
                     props: {
-                        disabled: true, // TODO: add navigation to bookings with this flat
+                        click: () => navigate(`${process.env.PUBLIC_URL}/bookings/flat/${props?.flat?.id}`), // TODO: add navigation to bookings with this flat
                         type: ButtonType.POPUP_FN,
                     }
                 },
