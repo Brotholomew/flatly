@@ -75,6 +75,10 @@ input {
     background-color: variants("surface");
     color: on("surface");
 
+    &::placeholder {
+      color: on("surface")
+    }
+
     &:focus {
       border: borders("input") variants("primary");
 

@@ -50,14 +50,21 @@ const CancelPopup = (props: cancelPopupInterface) => {
                         <h1>{title}</h1>
                         {info !== null && <p>{info}</p>}
                     </div>
-                    <div className={'popup-info'}>
-                        <h3>Renter:</h3> <h2>{props.booking.userData}</h2>
-                        <h3>Flat:</h3> <h2>{props.booking.flat.name}</h2>
-                        <h3>Check in:</h3> <h2>{props.booking.checkInDate}</h2>
-                        <h3>Check out:</h3> <h2>{props.booking.checkOutDate}</h2>
-                    </div>
                     <div className={'popup-picture'}>
                         <Picture image={props.booking.flat.images[0]} key={props.booking.flat.images[0]?.id}/>
+                    </div>
+                    <div className={'popup-info'}>
+                        <h4>Renter:</h4> <h2>{props.booking.userData}</h2>
+                        <div className={"separator-empty"} />
+
+                        <h4>Flat:</h4> <h2>{props.booking.flat.name}</h2>
+                        <div className={"separator-empty"} />
+
+                        <h4>Check in:</h4> <h2>{props.booking.checkInDate}</h2>
+                        <div className={"separator-empty"} />
+
+                        <h4>Check out:</h4> <h2>{props.booking.checkOutDate}</h2>
+                        <div className={"separator-empty"} />
                     </div>
                 </Popup>
             }

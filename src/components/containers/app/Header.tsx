@@ -1,6 +1,6 @@
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import GlobalHeader from "../../utils/GlobalHeader";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {SUPPORTED_PAGES} from "../../../store/modules/page/types";
 import {useDispatch, useSelector} from "react-redux";
 import {setPage} from "../../../store/modules/page/actions";
@@ -10,17 +10,26 @@ function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const chooseFlats = () => {
+    const { pathname } = useLocation();
+
+    const chooseFlats = (nav: boolean = true) => {
         dispatch(setPage('flats'));
-        navigate(`${process.env.PUBLIC_URL}/flats`);
+        if (nav) navigate(`${process.env.PUBLIC_URL}/flats`);
         setChosenPage('flats');
     }
 
-    const chooseBookings = () => {
+    const chooseBookings = (nav: boolean = true) => {
         dispatch(setPage('bookings'));
-        navigate(`${process.env.PUBLIC_URL}/bookings`);
+        if (nav) navigate(`${process.env.PUBLIC_URL}/bookings`);
         setChosenPage('bookings');
     }
+
+    useEffect(() => {
+        if (pathname.includes('bookings'))
+            chooseBookings(false);
+        else
+            chooseFlats(false);
+    })
 
     return (
         <GlobalHeader
