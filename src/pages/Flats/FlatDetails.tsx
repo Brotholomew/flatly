@@ -43,6 +43,11 @@ function FlatDetails() {
                 <label>Area</label>
                 <h3>{ flat?.area ?? <Skeleton/> }</h3>
                 <div className={'separator-empty'} />
+
+                <label>Is active (ready to booking)</label>
+                <h3>{ (flat?.active ? 'Yes' : 'No') ?? <Skeleton/> }</h3>
+                <div className={'separator-empty'} />
+
                 <label>Facilities</label>
                 <h3>{
                     flat?.facilities

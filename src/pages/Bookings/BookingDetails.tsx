@@ -35,10 +35,11 @@ function BookingDetails() {
                 <div className={'separator-empty'} />
 
                 <label>Check in:</label>
-                <h3>{ booking?.checkInDate ?? <Skeleton width={50}/>}</h3>
+                <h3>{ booking?.startDateTime ?? <Skeleton width={50}/>}</h3>
                 <div className={'separator-empty'} />
-                <label>Check out:</label>
-                <h3>{ booking?.checkOutDate ?? <Skeleton width={50}/> }</h3>
+
+                <label>Is active</label>
+                <h3>{ (booking?.active ? 'Yes' : 'No') ?? <Skeleton/> }</h3>
                 <div className={'separator-empty'} />
 
                 <h2>Flat:</h2>
