@@ -75,14 +75,20 @@ const Uploader = (props: UploaderProps) => {
                     <div className="upload__image-wrapper">
                         <button
                             style={isDragging ? { color: "red" } : undefined}
-                            onClick={onImageUpload}
                             {...dragProps}
                             className={"default-button default-button--blank"}
+                            onClick={(e) => { onImageUpload(); e.preventDefault(); }}
                         >
                             Click or Drop here
                         </button>
                         &nbsp;
-                        <button onClick={onImageRemoveAll} className={"default-button default-button--error"}>Remove all images</button>
+                        <button
+                            onClick={(e) => {onImageRemoveAll(); e.preventDefault();}}
+                            className={"default-button default-button--error"}
+                        >
+                            Remove all images
+                        </button>
+
                         {
                             loading && <p>Uploading</p>
                         }

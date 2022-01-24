@@ -50,7 +50,10 @@ function BookingsList() {
 
     const renderSkeleton = () => {
         return Array.from(Array(5).keys()).map((i: number) => <div key={i}>
-            <Skeleton count={3}/>
+            <Skeleton
+                count={3}
+                style={{boxSizing: 'border-box', width: '94%', padding: '6vh', margin: '1.8vh 3%', textAlign: 'center'}}
+            />
         </div>)
     }
 

@@ -44,7 +44,7 @@
     flex-direction: column;
 
     &.left {
-      align-items: end;
+      align-items: flex-end;
       grid-column: 1 / 2;
 
       @include screen-mobile() {

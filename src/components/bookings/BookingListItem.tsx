@@ -24,8 +24,8 @@ function BookingListItem(props: BookingListItemProps) {
             <div className={"list-item-prop list-item-picture"}><Picture image={props.booking.flat.images[0]} key={props.booking.flat.images[0]?.id}/></div>
             <ul className={"list-item-prop list-item-info"}>
                 <li>Renter: { props.booking.userData }</li>
-                <li>Check-in date: { props.booking.checkInDate }</li>
-                <li>Check-out date: { props.booking.checkOutDate }</li>
+                <li>Check-in date: { props.booking.startDateTime }</li>
+                <li>Active: { props.booking.active ? 'Yes' : 'No' }</li>
             </ul>
             <div className="list-item-prop list-item-buttons">
                 <Button

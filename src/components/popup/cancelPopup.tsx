@@ -19,14 +19,14 @@ const CancelPopup = (props: cancelPopupInterface) => {
     }
 
     const header = 'Cancel booking'
-    const title = isCurrent(props.booking?.checkOutDate) ? 'Confirm booking cancelation' : 'Can\'t cancel the booking';
-    const info = isCurrent(props.booking?.checkInDate) ? null : 'The renting currently takes place';
+    const title = props.booking?.active ? 'Confirm booking cancelation' : 'Can\'t cancel the booking';
+    const info = isCurrent(props.booking?.startDateTime) ? null : 'The renting currently takes place';
     const buttons =
         [{
             text: 'Cancel booking',
             props: {
                 type: ButtonType.POPUP_FN,
-                disabled: !isCurrent(props.booking?.checkOutDate),
+                disabled: !props.booking?.active,
                 click: () => {
                     if (props.booking !== null)
                         props.cancelBookingCallback(props.booking);
@@ -60,10 +60,7 @@ const CancelPopup = (props: cancelPopupInterface) => {
                         <h4>Flat:</h4> <h2>{props.booking.flat.name}</h2>
                         <div className={"separator-empty"} />
 
-                        <h4>Check in:</h4> <h2>{props.booking.checkInDate}</h2>
-                        <div className={"separator-empty"} />
-
-                        <h4>Check out:</h4> <h2>{props.booking.checkOutDate}</h2>
+                        <h4>Check in:</h4> <h2>{props.booking.startDateTime}</h2>
                         <div className={"separator-empty"} />
                     </div>
                 </Popup>
