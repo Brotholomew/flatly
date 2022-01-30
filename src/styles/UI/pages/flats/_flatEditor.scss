@@ -1,0 +1,59 @@
+@use '../../../themes/theme' as *;
+@use '../../../tools/mixins' as *;
+
+.editor {
+  @include themify() {
+    margin: margins("wrapper");
+    padding: paddings("wrapper");
+
+    .tag-input {
+      background-color: transparent;
+      border: 0;
+
+      font-weight: weights("regular");
+    }
+  }
+}
+
+.tag-brick {
+  background-color: transparent;
+
+  @include themify() {
+    font-family: types("default");
+    font-size: sizes("secondary-text")
+  }
+}
+
+.image-item {
+  position: relative;
+  margin: 1vh 1vw 1vh 1vw;
+
+  @include themify() {
+    @include screen-mobile() {
+      width: calc((100vw - nth(paddings("wrapper"), 2) - nth(margins("wrapper"), 2)) / 2.5);
+    }
+    width: calc((100vw - nth(paddings("wrapper"), 2) - nth(margins("wrapper"), 2)) / 5);
+  }
+}
+
+.image-item-btn-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  button {
+    @include themify() {
+      margin: 0;
+    }
+  }
+}
+
+.image-item-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  @include screen-mobile() {
+    justify-content: center;
+  }
+}

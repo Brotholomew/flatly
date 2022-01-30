@@ -1,0 +1,10 @@
+@use '../../themes/theme' as *;
+
+.auth-container {
+  margin: 0 auto 0 auto;
+  height: 100%;
+
+  @include themify() {
+    margin: margins("auth-container");
+  }
+}

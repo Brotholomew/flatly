@@ -1,0 +1,43 @@
+@use '../../../themes/theme' as *;
+
+.searcher-wrapper {
+  display: flex;
+  flex-direction: row;
+
+  @include themify() {
+    margin: margins("wrapper");
+  }
+}
+
+.extender-button-wrapper {
+  button {
+    @include themify() {
+      margin: 0;
+    }
+  }
+}
+
+.always-visible {
+  flex: 1;
+}
+
+.searcher {
+  display: flex;
+
+  input {
+    flex: 1;
+  }
+}
+
+.search-area {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+}
+
+.sorter {
+  input {
+    margin: 10px;
+  }
+}

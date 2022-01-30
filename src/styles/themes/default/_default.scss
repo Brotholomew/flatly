@@ -1,0 +1,20 @@
+@use './colors';
+@use './fonts';
+@use './components';
+
+$theme: (
+    // colors
+    "variants": colors.$variants,
+    "containers": colors.$containers,
+    "on": colors.$on,
+
+    // fonts
+    "types": fonts.$types,
+    "weights": fonts.$weights,
+    "sizes": fonts.$sizes,
+
+    // UI
+    "margins": components.$margins, 
+    "paddings": components.$paddings,
+    "borders": components.$borders
+);

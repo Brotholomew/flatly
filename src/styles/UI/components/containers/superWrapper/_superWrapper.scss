@@ -1,0 +1,22 @@
+@use '../../../../themes/theme' as *;
+@use "sass:list" as *;
+
+/*
+ * super-wrapper is used instead of body
+ * since it is easier to implement theming that way
+*/
+
+.super-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  @include themify() {
+    padding: paddings("body");
+    margin: margins("body");
+
+    min-height: calc(100% - calc(paddings("body") + nth(margins("body"), 1))); /* this works */
+
+    background-color: variants("background");
+    color: on("background");
+  }
+}

@@ -1,0 +1,146 @@
+@use '../themes/theme' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root, #root > div {
+  /* super-wrapper is used instead */
+  height: 100%;
+  width: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+head {
+
+}
+
+a, p, ul, li {
+  @include themify() {
+    font-family: types("default");
+    font-weight: weights("regular");
+    font-size: sizes("p");
+  }
+}
+
+a {
+  @include themify() {
+    color: variants("primary");
+  }
+}
+
+a:hover {
+  @include themify() {
+    color: containers("primary")
+  }
+}
+
+$sizes: "1", "2", "3", "4", "5", "6";
+@each $size in $sizes {
+  h#{$size} {
+    @include themify() {
+      font-family: types("header");
+      font-weight: weights("bold");
+      font-size: sizes("h#{$size}");
+    }
+  }
+}
+
+label {
+  @include themify() {
+    font-family: types("default");
+    font-weight: weights("regular");
+    font-size: sizes("secondary-text");
+
+    margin: margins("label");
+  }
+}
+
+input {
+  @include themify() {
+    font-family: types("default");
+    font-weight: weights("bold");
+    font-size: sizes("default");
+
+    border: borders("input") variants("surface-variant");
+    border-radius: borders("input-border-radius");
+
+    padding: paddings("input-padding");
+    margin: margins("input-margin");
+
+    background-color: variants("surface");
+    color: on("surface");
+
+    &::placeholder {
+      color: on("surface")
+    }
+
+    &:focus {
+      border: borders("input") variants("primary");
+
+      background-color: containers("primary");
+      color: on("primary-container");
+    }
+  }
+}
+
+textarea {
+  @include themify() {
+    font-family: types("default");
+    font-weight: weights("bold");
+    font-size: sizes("default");
+
+    border: borders("input") variants("surface-variant");
+    border-radius: borders("input-border-radius");
+
+    padding: paddings("input-padding");
+    margin: margins("input-margin");
+
+    background-color: variants("surface");
+    color: on("surface");
+
+    &:focus {
+      border: borders("input") variants("primary");
+
+      background-color: containers("primary");
+      color: on("primary-container");
+    }
+  }
+}
+
+.error {
+  @include themify() {
+    font-family: types("default");
+    font-weight: weights("bold");
+    font-size: sizes("default");
+    color: variants("error");
+  }
+}
+
+.separator {
+  width: 0;
+  height: 0;
+
+  @include themify() {
+    border: borders("separator") variants("primary");
+    margin: margins("separator");
+    padding: paddings("separator");
+
+    &-empty {
+      border: 0;
+      height: 2vh;
+    }
+  }
+
+  &-vertical {
+    height: inherit;
+  }
+
+  &-horizontal {
+    width: inherit;
+  }
+}

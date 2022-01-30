@@ -1,0 +1,71 @@
+// styles will be corrected in future PRs
+@use '../../../tools/mixins' as *;
+@use '../../../themes/theme' as *;
+
+.popup {
+  &-window {
+    @include themify() {
+      background: variants("background");
+      color: on("background");
+    }
+
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+
+    width: 50%;
+    margin: calc(100vh - 85vh - 20px) auto 0 auto;
+    padding: 20px;
+  }
+
+  &-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-inner{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  &-title {
+    @include screen-mobile() {
+      h1 {
+        @include themify() {
+          font-size: sizes("h3");
+        }
+      }
+    }
+  }
+
+  &-info {
+
+  }
+
+  &-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  &-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #00000050;
+  }
+
+  &-picture {
+    display: flex;
+    justify-content: center;
+
+    max-height: 15vh;
+  }
+}
+
