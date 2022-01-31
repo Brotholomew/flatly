@@ -41,6 +41,7 @@ jobs:
     # clean dirs
     
     - name: clean the develop dir
+      if: github.ref == 'refs/heads/develop'
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
