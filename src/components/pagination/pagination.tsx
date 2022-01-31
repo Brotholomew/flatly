@@ -19,9 +19,9 @@ const Pagination = (props: paginationInterface) => {
         const displayed = 7;
         const distance = Math.floor(7 / 2);
 
-        const offset = current - min < distance + 1 ? 0 : Math.min(max - displayed, current - (distance + 1));
+        const offset = Math.max(0, current - min < distance + 1 ? 0 : Math.min(max - displayed, current - (distance + 1)));
         const beginning = min + offset;
-
+        
         let pages: number[] = []
         for (let i = beginning; i < Math.min(beginning + displayed, max + 1); i++)
             pages = [...pages, i];
